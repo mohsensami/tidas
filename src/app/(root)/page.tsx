@@ -1,4 +1,5 @@
 // Home.tsx
+import StackedCards from "@/components/shared/StackedCards";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,25 +18,48 @@ const page = () => {
       {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[80vh] flex items-center justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-4 md:px-8">
-          <div
-            className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1611652033935-a5b6f39a2c3d?q=80&w=2940&auto=format&fit=crop')",
-            }}
-          >
-            <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+          <div className="col-md-8">
+            <div
+              className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
+              style={{
+                backgroundImage:
+                  "url('https://images.unsplash.com/photo-1611652033935-a5b6f39a2c3d?q=80&w=2940&auto=format&fit=crop')",
+              }}
+            >
+              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+            </div>
+            <div className="relative z-10 p-4">
+              <h1 className="text-2xl md:text-2xl font-bold text-[#d4af37] drop-shadow-lg">
+                درخشش ابدی، زیبایی بی‌پایان
+              </h1>
+              <p className="mt-4 text-md md:text-md text-gray-200 max-w-2xl mx-auto">
+                مجموعه‌ای بی‌نظیر از جواهرات دست‌ساز که هر لحظه شما را خاص
+                می‌کند.
+              </p>
+              <Button className="mt-8 bg-[#d4af37] text-[#0a192f] hover:bg-[#c8a435] font-bold  px-8 py-6 rounded-lg">
+                مشاهده کلکسیون
+              </Button>
+            </div>
           </div>
-          <div className="relative z-10 p-4">
-            <h1 className="text-2xl md:text-2xl font-bold text-[#d4af37] drop-shadow-lg">
-              درخشش ابدی، زیبایی بی‌پایان
-            </h1>
-            <p className="mt-4 text-md md:text-md text-gray-200 max-w-2xl mx-auto">
-              مجموعه‌ای بی‌نظیر از جواهرات دست‌ساز که هر لحظه شما را خاص می‌کند.
-            </p>
-            <Button className="mt-8 bg-[#d4af37] text-[#0a192f] hover:bg-[#c8a435] font-bold  px-8 py-6 rounded-lg">
-              مشاهده کلکسیون
-            </Button>
+          <div className="col-md-4">
+            <div dir="ltr" className="p-10 z-40 mt-12">
+              <StackedCards
+                items={[
+                  {
+                    img: "https://picsum.photos/id/4/400/400",
+                    title: "جواهر شماره ۱",
+                  },
+                  {
+                    img: "https://picsum.photos/id/6/400/400",
+                    title: "جواهر شماره ۲",
+                  },
+                  {
+                    img: "https://picsum.photos/id/8/400/400",
+                    title: "جواهر شماره ۳",
+                  },
+                ]}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -180,8 +204,8 @@ const page = () => {
                 ))}
               </div>
               <p className="text-gray-300 italic">
-                &quot;کیفیت کارها واقعا عالیه. از خریدم خیلی راضی هستم و حتما دوباره
-                از شما خرید می‌کنم.&quot;
+                &quot;کیفیت کارها واقعا عالیه. از خریدم خیلی راضی هستم و حتما
+                دوباره از شما خرید می‌کنم.&quot;
               </p>
               <p className="text-right mt-4 font-bold text-[#d4af37]">
                 - سارا احمدی
@@ -196,8 +220,8 @@ const page = () => {
                 ))}
               </div>
               <p className="text-gray-300 italic">
-                &quot;طراحی‌ها بسیار خاص و زیبا هستند. بسته‌بندی هم خیلی شیک بود.
-                ممنونم!&quot;
+                &quot;طراحی‌ها بسیار خاص و زیبا هستند. بسته‌بندی هم خیلی شیک
+                بود. ممنونم!&quot;
               </p>
               <p className="text-right mt-4 font-bold text-[#d4af37]">
                 - علی رضایی
