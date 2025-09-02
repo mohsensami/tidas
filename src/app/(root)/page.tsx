@@ -16,49 +16,51 @@ const page = () => {
   return (
     <div className="bg-[#0a192f] text-white">
       {/* Hero Section */}
-      <section className="relative h-[60vh] md:h-[80vh] flex items-center justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-4 md:px-8">
-          <div className="col-md-8">
-            <div
-              className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
-              style={{
-                backgroundImage:
-                  "url('https://images.unsplash.com/photo-1611652033935-a5b6f39a2c3d?q=80&w=2940&auto=format&fit=crop')",
-              }}
-            >
-              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+      <section className="relative h-[60vh] md:h-[80vh] items-center justify-center">
+        <div className="container mx-auto">
+          <div className="md:flex items-center justify-center gap-34">
+            <div className="">
+              <div
+                className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1611652033935-a5b6f39a2c3d?q=80&w=2940&auto=format&fit=crop')",
+                }}
+              >
+                <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+              </div>
+              <div className="relative z-10 p-4">
+                <h1 className="text-2xl md:text-2xl font-bold text-[#d4af37] drop-shadow-lg">
+                  درخشش ابدی، زیبایی بی‌پایان
+                </h1>
+                <p className="mt-4 text-md md:text-md text-gray-200 max-w-2xl mx-auto">
+                  مجموعه‌ای بی‌نظیر از جواهرات دست‌ساز که هر لحظه شما را خاص
+                  می‌کند.
+                </p>
+                <Button className="mt-8 bg-[#d4af37] text-[#0a192f] hover:bg-[#c8a435] font-bold  px-8 py-6 rounded-lg">
+                  مشاهده کلکسیون
+                </Button>
+              </div>
             </div>
-            <div className="relative z-10 p-4">
-              <h1 className="text-2xl md:text-2xl font-bold text-[#d4af37] drop-shadow-lg">
-                درخشش ابدی، زیبایی بی‌پایان
-              </h1>
-              <p className="mt-4 text-md md:text-md text-gray-200 max-w-2xl mx-auto">
-                مجموعه‌ای بی‌نظیر از جواهرات دست‌ساز که هر لحظه شما را خاص
-                می‌کند.
-              </p>
-              <Button className="mt-8 bg-[#d4af37] text-[#0a192f] hover:bg-[#c8a435] font-bold  px-8 py-6 rounded-lg">
-                مشاهده کلکسیون
-              </Button>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div dir="ltr" className="p-10 z-40 mt-12">
-              <StackedCards
-                items={[
-                  {
-                    img: "https://picsum.photos/id/4/400/400",
-                    title: "جواهر شماره ۱",
-                  },
-                  {
-                    img: "https://picsum.photos/id/6/400/400",
-                    title: "جواهر شماره ۲",
-                  },
-                  {
-                    img: "https://picsum.photos/id/8/400/400",
-                    title: "جواهر شماره ۳",
-                  },
-                ]}
-              />
+            <div className=" z-40 mt-12">
+              <div dir="ltr">
+                <StackedCards
+                  items={[
+                    {
+                      img: "https://picsum.photos/id/4/400/400",
+                      title: "جواهر شماره ۱",
+                    },
+                    {
+                      img: "https://picsum.photos/id/6/400/400",
+                      title: "جواهر شماره ۲",
+                    },
+                    {
+                      img: "https://picsum.photos/id/8/400/400",
+                      title: "جواهر شماره ۳",
+                    },
+                  ]}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -79,13 +81,9 @@ const page = () => {
                 <Image
                   width={400}
                   height={300}
-                  src={`https://images.unsplash.com/photo-${
-                    [
-                      "1605103443339-a859a515f458",
-                      "1610466000299-8a29e9234b34",
-                      "1599343358761-a396269f58f4",
-                    ][index]
-                  }?q=80&w=800&auto=format&fit=crop`}
+                  src={`https://picsum.photos/id/${
+                    ["20", "19", "17"][index]
+                  }/500/400`}
                   alt={category}
                   className="w-full h-64 object-cover"
                 />
@@ -148,22 +146,22 @@ const page = () => {
             {
               name: "حلقه الماس رویال",
               price: "۳۵,۰۰۰,۰۰۰ تومان",
-              img: "https://images.unsplash.com/photo-1598562354100-5e0f75cc5b06?q=80&w=800&auto=format&fit=crop",
+              img: "https://picsum.photos/id/11/400/300",
             },
             {
               name: "گردنبند مروارید آتلانتیس",
               price: "۴۲,۰۰۰,۰۰۰ تومان",
-              img: "https://images.unsplash.com/photo-1611591437134-4916a13d2d9b?q=80&w=800&auto=format&fit=crop",
+              img: "https://picsum.photos/id/9/400/300",
             },
             {
               name: "دستبند طلایی ونوس",
               price: "۲۸,۵۰۰,۰۰۰ تومان",
-              img: "https://images.unsplash.com/photo-1611591437123-2be26837a4a3?q=80&w=800&auto=format&fit=crop",
+              img: "https://picsum.photos/id/13/400/300",
             },
             {
               name: "گوشواره یاقوت سرخ",
               price: "۵۵,۰۰۰,۰۰۰ تومان",
-              img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop",
+              img: "https://picsum.photos/id/6/400/300",
             },
           ].map((product) => (
             <Card
