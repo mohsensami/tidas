@@ -18,7 +18,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, SlidersHorizontal } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { filters, products, sorts } from "@/lib/constants";
 
 export default function CategoryPage() {
@@ -50,7 +50,7 @@ export default function CategoryPage() {
     return sorted;
   }, [selectedFilter, selectedSort]);
 
-  const formatPrice = (price: any) => {
+  const formatPrice = (price: number) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " تومان";
   };
 

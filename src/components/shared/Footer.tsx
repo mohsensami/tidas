@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function Footer() {
@@ -9,10 +10,12 @@ export default function Footer() {
             href="https://flowbite.com/"
             className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
           >
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
+            <Image
+              width={150}
+              height={150}
               className="h-8"
-              alt="Flowbite Logo"
+              alt="tidas"
+              src="https://flowbite.com/docs/images/logo.svg"
             />
             <span className="self-center text-xl mr-2 font-semibold whitespace-nowrap dark:text-white">
               تادیس

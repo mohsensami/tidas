@@ -11,6 +11,7 @@ import {
 import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import Image from "next/image";
 
 // Dummy data for menu items
 const navItems = [
@@ -36,10 +37,12 @@ export default function Header() {
           href="/"
           className="text-xl font-bold text-yellow-600 md:text-2xl flex gap-2"
         >
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
+          <Image
+            width={150}
+            height={150}
             className="h-8"
-            alt="Flowbite Logo"
+            alt="tidas"
+            src="https://flowbite.com/docs/images/logo.svg"
           />
           <span>تادیس</span>
         </Link>
