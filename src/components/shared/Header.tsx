@@ -36,9 +36,14 @@ export default function Header() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl font-bold text-yellow-600 md:text-2xl"
+          className="text-xl font-bold text-yellow-600 md:text-2xl flex gap-2"
         >
-          Tidas Gold Gallery
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            className="h-8"
+            alt="Flowbite Logo"
+          />
+          <span>تادیس</span>
         </Link>
 
         {/* Desktop Navigation */}
