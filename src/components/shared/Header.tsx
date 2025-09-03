@@ -19,14 +19,12 @@ const navItems = [
     name: "محصولات",
     href: "/products",
     dropdown: [
-      { name: "گردنبند", href: "/products/necklaces" },
-      { name: "انگشتر", href: "/products/rings" },
-      { name: "گوشواره", href: "/products/earrings" },
-      { name: "دستبند", href: "/products/bracelets" },
+      { name: "گردنبند", href: "/product-category/necklaces" },
+      { name: "انگشتر", href: "/product-category/rings" },
+      { name: "گوشواره", href: "/product-category/earrings" },
+      { name: "دستبند", href: "/product-category/bracelets" },
     ],
   },
-  { name: "درباره ما", href: "/about" },
-  { name: "تماس با ما", href: "/contact" },
 ];
 
 export default function Header() {
@@ -51,7 +49,7 @@ export default function Header() {
           {navItems.map((item) => (
             <React.Fragment key={item.name}>
               {item.dropdown ? (
-                <DropdownMenu>
+                <DropdownMenu dir="rtl">
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="flex items-center gap-1">
                       {item.name}
