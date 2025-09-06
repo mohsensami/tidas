@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { APP_NAME } from "@/lib/constants";
+import ModeToggle from "./mode-toggle";
 
 const Header = () => {
   return (
@@ -24,16 +25,17 @@ const Header = () => {
           </Link>
         </div>
         <div className="space-x-2">
+          <ModeToggle />
           <Button asChild variant="ghost">
             <Link href="/cart">
               <ShoppingCart />
-              Cart
+              سبد خرید
             </Link>
           </Button>
           <Button asChild>
             <Link href="/sign-in">
               <UserIcon />
-              Sign In
+              ورود
             </Link>
           </Button>
         </div>
