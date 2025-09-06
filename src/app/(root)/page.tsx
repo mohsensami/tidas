@@ -5,7 +5,6 @@ export default function page() {
   return (
     <div>
       صفحه نخست
-      <Button>asdsad</Button>
     </div>
   );
 }
