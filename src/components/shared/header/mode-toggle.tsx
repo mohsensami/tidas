@@ -24,7 +24,7 @@ const ModeToggle = () => {
   }
   return (
     <>
-      <DropdownMenu>
+      <DropdownMenu dir="rtl">
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"

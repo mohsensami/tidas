@@ -1,10 +1,8 @@
-import { Button } from "@/components/ui/button";
-import React from "react";
+const delay = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export default function page() {
-  return (
-    <div>
-      صفحه نخست
-    </div>
-  );
-}
+const Homepage = async () => {
+  await delay(2000);
+  return <>برگه نخست</>;
+};
+
+export default Homepage;
