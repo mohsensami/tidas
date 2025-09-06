@@ -4,9 +4,8 @@ import sampleData from "../../../db/sample-data";
 const HomePage = () => {
   return (
     <div className="space-y-8">
-      <h2 className="h2-bold">Latest Products</h2>
       <ProductList
-        title="Newest Arrivals"
+        title="جدیدترین محصولات"
         data={sampleData.products}
         limit={4}
       />
