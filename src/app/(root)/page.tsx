@@ -3,7 +3,7 @@ import sampleData from "../../../db/sample-data";
 import { getLatestProducts } from "@/lib/actions/product.actions";
 
 const HomePage = async () => {
-  const latestProducts = await getLatestProducts();
+  const latestProducts: any = await getLatestProducts();
   return (
     <div className="space-y-8">
       <ProductList title="جدیدترین محصولات" data={latestProducts} limit={4} />
