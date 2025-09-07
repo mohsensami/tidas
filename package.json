@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate",
+    "generate": "npx prisma generate",
+    "migrate": "npx prisma migrate dev",
+    "db": "npx prisma studio"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
