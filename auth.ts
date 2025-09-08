@@ -1,5 +1,5 @@
 import { compareSync } from "bcrypt-ts-edge";
-import type { NextAuthOptions } from "next-auth";
+import type { NextAuthConfig } from "next-auth";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -65,6 +65,6 @@ export const config = {
       return session;
     },
   },
-} satisfies NextAuthOptions;
+} satisfies NextAuthConfig;
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);
