@@ -65,7 +65,7 @@ const CredentialsSignInForm = () => {
 
         <div className="text-sm text-center text-muted-foreground">
           حساب کاربری ندارید؟
-          <Link target="_self" className="link" href="/sign-up">
+          <Link target="_self" className="link mr-2" href="/sign-up">
             ثبت نام
           </Link>
         </div>

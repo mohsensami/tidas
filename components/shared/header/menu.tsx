@@ -3,6 +3,7 @@ import { Button } from "../../ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../../ui/sheet";
 import Link from "next/link";
 import ModeToggle from "./mode-toggle";
+import UserButton from "./user-button";
 
 const Menu = () => {
   return (
@@ -16,12 +17,7 @@ const Menu = () => {
               سبد خرید
             </Link>
           </Button>
-          <Button asChild>
-            <Link href="/sign-in">
-              <UserIcon />
-              ورود
-            </Link>
-          </Button>
+          <UserButton />
         </nav>
         <nav dir="rtl" className="md:hidden">
           <Sheet>
@@ -37,12 +33,7 @@ const Menu = () => {
                   سبد خرید
                 </Link>
               </Button>
-              <Button asChild>
-                <Link href="/sign-in">
-                  <UserIcon />
-                  ورود
-                </Link>
-              </Button>
+              <UserButton />
             </SheetContent>
           </Sheet>
         </nav>

@@ -5,8 +5,9 @@ const Footer = () => {
 
   return (
     <footer className="border-t">
-      <div className="p-5 flex-center">
-        {currentYear} {APP_NAME}. All Rights reserved.
+      <div className="p-5 flex-center text-xs">
+        {currentYear} {APP_NAME}. کليه حقوق محصولات و محتوای اين سایت متعلق به
+        تیداس است.
       </div>
     </footer>
   );
