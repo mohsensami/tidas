@@ -17,7 +17,7 @@ import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | Tidas Gold`,
+    template: `%s | تیداس`,
     default: APP_NAME,
   },
   description: APP_DESCRIPTION,
