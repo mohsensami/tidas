@@ -32,7 +32,7 @@ const AddToCart = ({ item }: { item: CartItem }) => {
       </div>
     ));
 
-    // router.push("/cart");
+    router.push("/cart");
 
     // toast({
     //   description: `${item.name} added to the cart`,
