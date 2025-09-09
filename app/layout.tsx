@@ -4,6 +4,7 @@ import "./globals.css";
 import "../styles/fonts.css";
 import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from "../lib/constants";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "react-hot-toast";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster />
           {children}
         </ThemeProvider>
       </body>
