@@ -8,7 +8,6 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { signInWithCredentials } from "../../../lib/actions/user.actions";
 import { useSearchParams } from "next/navigation";
-import toast from "react-hot-toast";
 
 const CredentialsSignInForm = () => {
   const [data, action] = useActionState(signInWithCredentials, {
@@ -25,10 +24,8 @@ const CredentialsSignInForm = () => {
       </Button>
     );
   };
-  const notify = () => toast.success('Here is your toast.');
   return (
     <form action={action}>
-      <button onClick={notify}>Make me a toast</button>
       <input type="hidden" name="callbackUrl" value={callbackUrl} />
       <div className="space-y-6">
         <div>
