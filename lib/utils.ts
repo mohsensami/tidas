@@ -54,3 +54,21 @@ export const round2 = (value: number | string) => {
     throw new Error("value is not a number nor a string");
   }
 };
+
+// Formatter برای ریال (چون Intl تومان رو ساپورت نمی‌کنه)
+const RIAL_FORMATTER = new Intl.NumberFormat("fa-IR", {
+  currency: "IRR",
+  style: "currency",
+  minimumFractionDigits: 0, // معمولا اعشار نداریم
+});
+
+// تبدیل به تومان و فرمت کردن
+export function formatCurrency(amount: number | string | null) {
+  if (amount == null) return "NaN";
+  const value = typeof amount === "string" ? Number(amount) : amount;
+  if (isNaN(value)) return "NaN";
+  // تبدیل ریال به تومان
+  const tomanValue = value / 10;
+  // فرمت و جایگزینی "ریال" با "تومان"
+  return RIAL_FORMATTER.format(tomanValue).replace("ریال", "تومان");
+}

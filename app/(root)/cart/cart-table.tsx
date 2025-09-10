@@ -18,6 +18,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import toast from "react-hot-toast";
+import { formatCurrency } from "@/lib/utils";
 
 const CartTable = ({ cart }: { cart?: Cart }) => {
   const router = useRouter();
@@ -71,10 +72,6 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                               item.productId
                             );
                             if (!res.success) {
-                              //   toast({
-                              //     variant: "destructive",
-                              //     description: res.message,
-                              //   });
                               toast(res.message);
                             }
                           })
@@ -95,10 +92,6 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                           startTransition(async () => {
                             const res = await addItemToCart(item);
                             if (!res.success) {
-                              //   toast({
-                              //     variant: "destructive",
-                              //     description: res.message,
-                              //   });
                               toast(res.message);
                             }
                           })
@@ -119,6 +112,17 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
               </TableBody>
             </Table>
           </div>
+          <Card>
+            <CardContent className="p-4 gap-4">
+              <div className="pb-3 text-xl">
+                جمع کل ({cart.items.reduce((a, c) => a + c.qty, 0)}):
+                <span className="font-bold">
+                  {" "}
+                  {formatCurrency(cart.itemsPrice)}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       )}
     </>
