@@ -5,7 +5,7 @@ import PaymentMethodForm from "./payment-method-form";
 import CheckoutSteps from "@/components/shared/checkout-steps";
 
 export const metadata: Metadata = {
-  title: "شیوه پرداخت",
+  title: "روش پرداخت",
 };
 
 const PaymentMethodPage = async () => {

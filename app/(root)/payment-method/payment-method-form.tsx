@@ -15,7 +15,7 @@ import { updateUserPaymentMethod } from "@/lib/actions/user.actions";
 import { DEFAULT_PAYMENT_METHOD, PAYMENT_METHODS } from "@/lib/constants";
 import { paymentMethodSchema } from "@/lib/validators";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Loader } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -59,9 +59,9 @@ const PaymentMethodForm = ({
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-4"
           >
-            <h1 className="h2-bold mt-4">Payment Method</h1>
+            <h1 className="h3-bold mt-4">روش پرداخت</h1>
             <p className="text-sm text-muted-foreground">
-              Please select your preferred payment method
+              لطفا روش پرداخت دلخواه خود را انتخاب کنید
             </p>
             <div className="flex flex-col gap-5 md:flex-row">
               <FormField
@@ -100,12 +100,12 @@ const PaymentMethodForm = ({
             </div>
             <div className="flex gap-2">
               <Button type="submit" disabled={isPending}>
+                ادامه
                 {isPending ? (
                   <Loader className="animate-spin w-4 h-4" />
                 ) : (
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowLeft className="w-4 h-4" />
                 )}
-                Continue
               </Button>
             </div>
           </form>
