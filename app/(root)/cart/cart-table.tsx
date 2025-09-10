@@ -3,7 +3,7 @@
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { addItemToCart, removeItemFromCart } from "@/lib/actions/cart.actions";
-import { ArrowRight, Loader, Minus, Plus } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader, Minus, Plus } from "lucide-react";
 import { Cart } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -121,6 +121,20 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                   {formatCurrency(cart.itemsPrice)}
                 </span>
               </div>
+              <Button
+                onClick={() =>
+                  startTransition(() => router.push("/shipping-address"))
+                }
+                className="w-full"
+                disabled={isPending}
+              >
+                تسویه حساب
+                {isPending ? (
+                  <Loader className="animate-spin w-4 h-4" />
+                ) : (
+                  <ArrowLeft className="w-4 h-4" />
+                )}
+              </Button>
             </CardContent>
           </Card>
         </div>
