@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { updateProfile } from "@/lib/actions/user.actions";
 import { updateProfileSchema } from "@/lib/validators";
+import toast from "react-hot-toast";
 
 const ProfileForm = () => {
   const { data: session, update } = useSession();
@@ -27,10 +28,33 @@ const ProfileForm = () => {
     },
   });
 
+  // Submit form to update profile
+  async function onSubmit(values: z.infer<typeof updateProfileSchema>) {
+    const res = await updateProfile(values);
+    if (!res.success)
+      //   return toast({
+      //     variant: "destructive",
+      //     description: res.message,
+      //   });
+      toast.error(res.message);
+    const newSession = {
+      ...session,
+      user: {
+        ...session?.user,
+        name: values.name,
+      },
+    };
+    await update(newSession);
+    // toast({
+    //   description: res.message,
+    // });
+    toast.success(res.message);
+  }
+
   return (
     <Form {...form}>
       <form
-        // onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-5"
       >
         <div className="flex flex-col gap-5">
@@ -74,7 +98,9 @@ const ProfileForm = () => {
           disabled={form.formState.isSubmitting}
           className="button col-span-2 w-full"
         >
-          {form.formState.isSubmitting ? "Submitting..." : "Update Profile"}
+          {form.formState.isSubmitting
+            ? "در حال ارسال اطلاعات ..."
+            : "به روزرسانی"}
         </Button>
       </form>
     </Form>
