@@ -72,6 +72,7 @@ export function formatCurrency(amount: number | string | null) {
   const tomanValue = value / 10;
   // فرمت و جایگزینی "ریال" با "تومان"
   return RIAL_FORMATTER.format(tomanValue).replace("ریال", "تومان");
+  // return RIAL_FORMATTER.format(tomanValue).replace("ریال", "تومان");
 }
 
 // Shorten ID

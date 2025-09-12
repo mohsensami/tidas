@@ -1,4 +1,4 @@
-import { cn } from "../../../lib/utils";
+import { cn, formatCurrency } from "../../../lib/utils";
 
 const ProductPrice = ({
   value,
@@ -13,8 +13,9 @@ const ProductPrice = ({
   const [intValue, floatValue] = stringValue.split(".");
 
   return (
-    <p className={cn("text-2xl", className)}>
-      {intValue} <span className="text-xs align-super">تومان</span>
+    <p className={cn("text-xl", className)}>
+      {formatCurrency(intValue)}
+      {/* <span className="text-xs align-super">تومان</span> */}
       {/* <span className="text-xs align-super">.{floatValue}</span> */}
     </p>
   );
