@@ -11,7 +11,7 @@ import {
 import { signOutUser } from "@/lib/actions/user.actions";
 
 const UserButton = async () => {
-  const session = await auth();
+  const session: any = await auth();
   if (!session) {
     return (
       <Link href="/api/auth/signin">
@@ -55,6 +55,13 @@ const UserButton = async () => {
               تاریخچه سفارشات
             </Link>
           </DropdownMenuItem>
+          {session.user.role === "admin" && (
+            <DropdownMenuItem>
+              <Link className="w-full" href="/admin/overview">
+                مدیر
+              </Link>
+            </DropdownMenuItem>
+          )}
 
           <DropdownMenuItem className="p-0 mb-1">
             <form action={signOutUser} className="w-full">
