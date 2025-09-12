@@ -24,6 +24,7 @@ import {
   approvePayPalOrder,
   createPayPalOrder,
   deliverOrder,
+  startOrder,
   updateOrderToPaidByCOD,
 } from "@/lib/actions/order.actions";
 import { useTransition } from "react";
@@ -122,6 +123,20 @@ const OrderDetailsTable = ({
       </Button>
     );
   };
+
+  const [isPending, startTransition] = useTransition();
+
+  async function handlePay() {
+    startTransition(async () => {
+      const res = await startOrder();
+      if (res.ok && res.url) {
+        window.location.href = res.url; // ریدایرکت به درگاه
+      } else {
+        alert("خطا در ایجاد تراکنش");
+        console.log(res);
+      }
+    });
+  }
   return (
     <>
       <h1 className="py-4 text-2xl"> Order {formatId(order.id)}</h1>
@@ -236,6 +251,13 @@ const OrderDetailsTable = ({
                 <MarkAsPaidButton />
               )}
               {isAdmin && isPaid && !isDelivered && <MarkAsDeliveredButton />}
+              <button
+                onClick={handlePay}
+                disabled={isPending}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+              >
+                {isPending ? "در حال انتقال..." : "پرداخت تستی"}
+              </button>
             </CardContent>
           </Card>
         </div>

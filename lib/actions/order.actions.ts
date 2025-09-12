@@ -13,6 +13,7 @@ import { paypal } from "../paypal";
 import { revalidatePath } from "next/cache";
 import { PAGE_SIZE } from "../constants";
 import { Prisma } from "../generated/prisma";
+import { createPayment, verifyPayment } from "../zarinpal";
 
 // Create an order
 export async function createOrder() {
@@ -395,4 +396,39 @@ export async function deliverOrder(orderId: string) {
   } catch (err) {
     return { success: false, message: formatError(err) };
   }
+}
+
+export async function startOrder() {
+  const callback_url = "http://localhost:3000/payment/callback";
+  const amount = 1000;
+
+  const response = await createPayment(
+    amount,
+    "تست پرداخت با زرین پال",
+    callback_url
+  );
+
+  if (response.data?.code === 100) {
+    return {
+      ok: true,
+      url: `https://sandbox.zarinpal.com/pg/StartPay/${response.data.authority}`,
+    };
+  }
+
+  return { ok: false, error: response.errors };
+}
+
+export async function checkOrder(Authority: string, Status: string) {
+  if (Status !== "OK") {
+    return { ok: false, error: "پرداخت لغو شد یا ناموفق بود." };
+  }
+
+  const amount = 1000;
+  const response = await verifyPayment(amount, Authority);
+
+  if (response.data?.code === 100) {
+    return { ok: true, ref_id: response.data.ref_id };
+  }
+
+  return { ok: false, error: response.errors };
 }
