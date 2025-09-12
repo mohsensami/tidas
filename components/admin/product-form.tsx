@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { createProduct, updateProduct } from "@/lib/actions/product.actions";
 import { productDefaultValues } from "@/lib/constants";
-import { ControllerRenderProps } from "react-hook-form";
+import { ControllerRenderProps, SubmitHandler } from "react-hook-form";
 import { Product } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import slugify from "slugify";
 import { insertProductSchema, updateProductSchema } from "@/lib/validators";
 import { Textarea } from "../ui/textarea";
+import toast from "react-hot-toast";
 
 const ProductForm = ({
   type,
@@ -36,18 +37,51 @@ const ProductForm = ({
 }) => {
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof insertProductSchema>>({
-    // resolver:
-    //   type === "Update"
-    //     ? zodResolver(updateProductSchema)
-    //     : zodResolver(insertProductSchema),
-    defaultValues:
-      product && type === "Update" ? product : productDefaultValues,
+  type FormValues = z.infer<typeof insertProductSchema>;
+  const form = useForm<FormValues>({
+    resolver: zodResolver(insertProductSchema) as any,
+    defaultValues: (product && type === "Update"
+      ? product
+      : productDefaultValues) as any,
   });
+
+  // Handle form submit
+  const onSubmit: SubmitHandler<z.infer<typeof insertProductSchema>> = async (
+    values
+  ) => {
+    if (type === "Create") {
+      const res = await createProduct(values);
+
+      if (!res.success) {
+        toast.error(res.message);
+      } else {
+        toast.success(res.message);
+        router.push(`/admin/products`);
+      }
+    }
+    if (type === "Update") {
+      if (!productId) {
+        router.push(`/admin/products`);
+        return;
+      }
+
+      const res = await updateProduct({ ...values, id: productId });
+
+      if (!res.success) {
+        toast.error(res.message);
+      } else {
+        router.push(`/admin/products`);
+      }
+    }
+  };
 
   return (
     <Form {...form}>
-      <form className="space-y-8">
+      <form
+        method="post"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8"
+      >
         <div className="flex flex-col gap-5 md:flex-row">
           {/* Name */}
           <FormField
