@@ -13,6 +13,13 @@ const nextConfig: NextConfig = {
       "picsum.photos",
       "images.unsplash.com",
     ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+        port: "",
+      },
+    ],
   },
   eslint: {
     ignoreDuringBuilds: true,
