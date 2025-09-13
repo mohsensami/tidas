@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getAllUsers } from "@/lib/actions/user.actions";
+import { deleteUser, getAllUsers } from "@/lib/actions/user.actions";
 import { requireAdmin } from "@/lib/auth-guard";
 
 import { auth } from "@/auth";
@@ -58,6 +58,7 @@ const AdminUserPage = async (props: {
                     <Link href={`/admin/users/${user.id}`}>ویرایش</Link>
                   </Button>
                   {/* DELETE DIALOG HERE */}
+                  <DeleteDialog id={user.id} action={deleteUser} />
                 </TableCell>
               </TableRow>
             ))}
