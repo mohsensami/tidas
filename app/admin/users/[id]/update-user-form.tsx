@@ -24,6 +24,8 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { updateUserSchema } from "@/lib/validators";
+import { updateUser } from "@/lib/actions/user.actions";
+import toast from "react-hot-toast";
 
 const UpdateUserForm = ({
   user,
@@ -37,9 +39,44 @@ const UpdateUserForm = ({
     defaultValues: user,
   });
 
+  // Handle submit
+  const onSubmit = async (values: z.infer<typeof updateUserSchema>) => {
+    try {
+      const res = await updateUser({
+        ...values,
+        id: user.id,
+      });
+
+      if (!res.success)
+        // return toast({
+        //   variant: "destructive",
+        //   description: res.message,
+        // });
+        toast.error(res.message);
+
+      //   toast({
+      //     description: res.message,
+      //   });
+      toast.success(res.message);
+
+      form.reset();
+      router.push(`/admin/users`);
+    } catch (error) {
+      //   toast({
+      //     variant: "destructive",
+      //     description: (error as Error).message,
+      //   });
+      toast.error((error as Error).message);
+    }
+  };
+
   return (
     <Form {...form}>
-      <form className="space-y-4">
+      <form
+        method="post"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-4"
+      >
         {/* Email */}
         <div>
           <FormField
