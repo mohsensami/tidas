@@ -256,7 +256,7 @@ const OrderDetailsTable = ({
                 disabled={isPending}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg"
               >
-                {isPending ? "در حال انتقال..." : "پرداخت تستی"}
+                {isPending ? "در حال انتقال..." : "پرداخت با زرین پال"}
               </button>
             </CardContent>
           </Card>
