@@ -30,6 +30,7 @@ const prices = [
   },
 ];
 const ratings = [4, 3, 2, 1];
+const sortOrders = ["newest", "lowest", "highest", "rating"];
 
 const SearchPage = async (props: {
   searchParams: Promise<{
@@ -166,6 +167,18 @@ const SearchPage = async (props: {
         </div>
       </div>
       <div className="md:col-span-4 space-y-4">
+        <div>
+          مرتب سازی بر اساس{" "}
+          {sortOrders.map((s) => (
+            <Link
+              key={s}
+              className={`mx-2   ${sort == s && "font-bold"} `}
+              href={getFilterUrl({ s })}
+            >
+              {s}
+            </Link>
+          ))}
+        </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {products!.data.length === 0 && (
             <div className="">محصولی یافت نشد</div>
