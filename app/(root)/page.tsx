@@ -5,6 +5,7 @@ import {
   getFeaturedProducts,
   getLatestProducts,
 } from "../../lib/actions/product.actions";
+import ViewAllProductsButton from "@/components/view-all-products-button";
 
 const HomePage = async () => {
   const latestProducts: any = await getLatestProducts();
@@ -16,6 +17,7 @@ const HomePage = async () => {
       )}
 
       <ProductList title="جدیدترین محصولات" data={latestProducts} />
+      <ViewAllProductsButton />
     </div>
   );
 };
