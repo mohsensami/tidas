@@ -7,6 +7,7 @@ import { APP_NAME } from "../../../lib/constants";
 import ModeToggle from "./mode-toggle";
 import Menu from "./menu";
 import CategoriesDrawer from "./categories-drawer";
+import Search from "./search";
 
 const Header = () => {
   return (
@@ -25,6 +26,9 @@ const Header = () => {
               {APP_NAME}
             </span>
           </Link>
+        </div>
+        <div className="">
+          <Search />
         </div>
         <div className="flex justify-center">
           <CategoriesDrawer />
