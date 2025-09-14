@@ -6,6 +6,7 @@ import { Button } from "../../ui/button";
 import { APP_NAME } from "../../../lib/constants";
 import ModeToggle from "./mode-toggle";
 import Menu from "./menu";
+import CategoriesDrawer from "./categories-drawer";
 
 const Header = () => {
   return (
@@ -25,7 +26,10 @@ const Header = () => {
             </span>
           </Link>
         </div>
-        <Menu />
+        <div className="flex justify-center">
+          <CategoriesDrawer />
+          <Menu />
+        </div>
       </div>
     </header>
   );
