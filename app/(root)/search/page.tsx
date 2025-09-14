@@ -29,6 +29,7 @@ const prices = [
     value: "501-1000",
   },
 ];
+const ratings = [4, 3, 2, 1];
 
 const SearchPage = async (props: {
   searchParams: Promise<{
@@ -139,10 +140,36 @@ const SearchPage = async (props: {
             ))}
           </ul>
         </div>
+        {/* Rating Links */}
+        <div>
+          <div className="text-xl mt-8 mb-2">نظر کاربران</div>
+          <ul className="space-y-1">
+            <li>
+              <Link
+                href={getFilterUrl({ r: "all" })}
+                className={`  ${"all" === rating && "font-bold"}`}
+              >
+                همه
+              </Link>
+            </li>
+            {ratings.map((r) => (
+              <li key={r}>
+                <Link
+                  href={getFilterUrl({ r: `${r}` })}
+                  className={`${r.toString() === rating && "font-bold"}`}
+                >
+                  {`${r} ستاره به بالا`}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className="md:col-span-4 space-y-4">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {products!.data.length === 0 && <div>No product found</div>}
+          {products!.data.length === 0 && (
+            <div className="">محصولی یافت نشد</div>
+          )}
           {products!.data.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
