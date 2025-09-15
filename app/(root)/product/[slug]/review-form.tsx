@@ -49,7 +49,7 @@ const ReviewForm = ({
 }: {
   userId: string;
   productId: string;
-  onReviewSubmitted?: any;
+  onReviewSubmitted: () => void;
 }) => {
   const [open, setOpen] = useState(false);
 
