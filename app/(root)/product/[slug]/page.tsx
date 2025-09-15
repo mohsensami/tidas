@@ -44,7 +44,7 @@ const ProductDetailsPage = async (props: {
               </p>
               <h1 className="h3-bold">{product.name}</h1>
               <Rating value={Number(product.rating)} />
-              <p>{product.numReviews} reviews</p>
+              <p>{product.numReviews} دیدگاه</p>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <ProductPrice
@@ -54,8 +54,8 @@ const ProductDetailsPage = async (props: {
               </div>
             </div>
             <div className="mt-10">
-              <p>Description:</p>
-              <p>{product.description}</p>
+              <p>توضیحات:</p>
+              <p className="text-justify text-sm">{product.description}</p>
             </div>
           </div>
           {/* Action Column */}
@@ -97,7 +97,7 @@ const ProductDetailsPage = async (props: {
         </div>
       </section>
       <section className="mt-10">
-        <h2 className="h2-bold  mb-5">Customer Reviews</h2>
+        <h2 className="h4-bold  mb-5">دیدگاه کاربران</h2>
         <ReviewList
           productId={product.id}
           productSlug={product.slug}

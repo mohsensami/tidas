@@ -102,7 +102,7 @@ const AddToCart = ({
       ) : (
         <Plus className="w-4 h-4" />
       )}
-      Add to cart
+      افزودن به سبد خرید
     </Button>
   );
 };

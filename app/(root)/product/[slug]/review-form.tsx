@@ -37,7 +37,10 @@ import { insertReviewSchema } from "@/lib/validators";
 import { z } from "zod";
 import { StarIcon } from "lucide-react";
 import { reviewFormDefaultValues } from "@/lib/constants";
-import { createUpdateReview } from "@/lib/actions/review.actions";
+import {
+  createUpdateReview,
+  getReviewByProductId,
+} from "@/lib/actions/review.actions";
 import toast from "react-hot-toast";
 
 type CustomerReview = z.infer<typeof insertReviewSchema>;
@@ -79,25 +82,35 @@ const ReviewForm = ({
     toast.success(res.message);
   };
 
-  const handleOpenForm = () => {
+  // Open dialog on button click
+  const handleOpenForm = async () => {
     form.setValue("productId", productId);
     form.setValue("userId", userId);
 
+    const review = await getReviewByProductId({ productId });
+
+    if (review) {
+      form.setValue("title", review.title);
+      form.setValue("description", review.description);
+      form.setValue("rating", review.rating);
+    }
     setOpen(true);
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <Button onClick={handleOpenForm} variant="default">
-        Write a review
+        یک دیدگاه بنویسید
       </Button>
       <DialogContent className="sm:max-w-[425px]">
         <Form {...form}>
           <form method="post" onSubmit={form.handleSubmit(onSubmit)}>
             <DialogHeader>
-              <DialogTitle>Write a review</DialogTitle>
-              <DialogDescription>
-                Share your thoughts with other customers
+              <DialogTitle className="text-right">
+                یک دیدگاه بنویسید
+              </DialogTitle>
+              <DialogDescription className="text-right">
+                دیدگاه خود را با دیگر مشتریان به اشتراک بگذارید
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
@@ -106,9 +119,12 @@ const ReviewForm = ({
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel>عنوان</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter title" {...field} />
+                      <Input
+                        placeholder="عنوان دیدگاه خود را وارد کنید"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -119,9 +135,12 @@ const ReviewForm = ({
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>متن</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Enter description" {...field} />
+                      <Textarea
+                        placeholder="متن دیدگاه خود را وارد کنید"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -132,14 +151,15 @@ const ReviewForm = ({
                 name="rating"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Rating</FormLabel>
+                    <FormLabel>امتیاز</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       value={field.value.toString()}
+                      dir="rtl"
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a rating" />
+                          <SelectValue placeholder="یک امتیاز وارد کنید" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -165,7 +185,7 @@ const ReviewForm = ({
                 className="w-full"
                 disabled={form.formState.isSubmitting}
               >
-                {form.formState.isSubmitting ? "Submitting..." : "Submit"}
+                {form.formState.isSubmitting ? "در حال ارسال ..." : "ارسال"}
               </Button>
             </DialogFooter>
           </form>

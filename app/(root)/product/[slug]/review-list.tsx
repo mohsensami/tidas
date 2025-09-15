@@ -15,6 +15,7 @@ import Link from "next/link";
 import ReviewForm from "./review-form";
 import { getReviews } from "@/lib/actions/review.actions";
 import Rating from "@/components/shared/product/rating";
+import toast from "react-hot-toast";
 
 const ReviewList = ({
   userId,
@@ -29,7 +30,13 @@ const ReviewList = ({
 
   // Reload reviews when a review is submitted
   const reload = async () => {
-    console.log("review submitted");
+    try {
+      const res = await getReviews({ productId });
+      setReviews([...res.data]);
+    } catch (err) {
+      console.log(err);
+      toast.error("Error in fetching reviews");
+    }
   };
 
   useEffect(() => {
@@ -56,14 +63,14 @@ const ReviewList = ({
         </>
       ) : (
         <div>
-          Please{" "}
+          لطفا برای ارسال دیدگاه{" "}
           <Link
             className="text-primary px-2"
             href={`/api/auth/signin?callbackUrl=/product/${productSlug}`}
           >
-            sign in
+            وارد
           </Link>{" "}
-          to write a review
+          شوید
         </div>
       )}
       <div className="flex flex-col gap-3">
