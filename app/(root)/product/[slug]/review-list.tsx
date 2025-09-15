@@ -12,6 +12,7 @@ import {
 import { Calendar, Check, User } from "lucide-react";
 import { formatDateTime } from "@/lib/utils";
 import Link from "next/link";
+import ReviewForm from "./review-form";
 
 const ReviewList = ({
   userId,
@@ -28,7 +29,10 @@ const ReviewList = ({
     <div className="space-y-4">
       {reviews.length === 0 && <div>No reviews yet</div>}
       {userId ? (
-        <>{/* REVIEW FORM HERE */}</>
+        <>
+          {/* REVIEW FORM HERE */}
+          <ReviewForm userId={userId} productId={productId} />
+        </>
       ) : (
         <div>
           Please{" "}
