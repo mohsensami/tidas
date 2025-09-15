@@ -21,6 +21,49 @@ type OrderInformationProps = {
   order: Order;
 };
 
+PurchaseReceiptEmail.PreviewProps = {
+  order: {
+    id: crypto.randomUUID(),
+    userId: "123",
+    user: {
+      name: "John Doe",
+      email: "bS8Rn@example.com",
+    },
+    paymentMethod: "Stripe",
+    shippingAddress: {
+      fullName: "John Doe",
+      streetAddress: "123 Main St",
+      city: "New York",
+      postalCode: "10001",
+      country: "US",
+    },
+    createdAt: new Date(),
+    totalPrice: "100",
+    taxPrice: "10",
+    shippingPrice: "10",
+    itemsPrice: "80",
+    orderItems: sampleData.products.map((x: any) => ({
+      name: x.name,
+      orderId: "123",
+      productId: "123",
+      slug: x.slug,
+      qty: x.stock,
+      image: x.images[0],
+      price: x.price,
+    })),
+    isDelivered: true,
+    deliveredAt: new Date(),
+    isPaid: true,
+    paidAt: new Date(),
+    paymentResult: {
+      id: "123",
+      status: "succeeded",
+      pricePaid: "12",
+      email_address: "bS8Rn@example.com",
+    },
+  },
+} satisfies OrderInformationProps;
+
 const dateFormatter = new Intl.DateTimeFormat("en", { dateStyle: "medium" });
 
 export default function PurchaseReceiptEmail({ order }: { order: Order }) {
