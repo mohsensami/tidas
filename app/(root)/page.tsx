@@ -14,13 +14,15 @@ const HomePage = async () => {
   const featuredProducts = await getFeaturedProducts();
   return (
     <div className="space-y-8">
-      {featuredProducts.length > 0 && (
-        <ProductCarousel data={featuredProducts} />
-      )}
+      <div dir="ltr">
+        {featuredProducts.length > 0 && (
+          <ProductCarousel data={featuredProducts} />
+        )}
+      </div>
 
       <ProductList title="جدیدترین محصولات" data={latestProducts} />
       <ViewAllProductsButton />
-      <DealCountdown />
+      <DealCountdown targetDate={new Date("2026-12-20T00:00:00")} />
       <IconBoxes />
     </div>
   );

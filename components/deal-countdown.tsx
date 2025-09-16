@@ -5,9 +5,6 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-// تاریخ هدف ثابت (می‌توانید تغییر دهید)
-const TARGET_DATE = new Date("2024-12-20T00:00:00");
-
 // تابع محاسبه زمان باقی‌مانده
 const calculateTimeRemaining = (targetDate: Date) => {
   const currentTime = new Date();
@@ -22,14 +19,18 @@ const calculateTimeRemaining = (targetDate: Date) => {
   };
 };
 
-const DealCountdown = () => {
+type DealCountdownProps = {
+  targetDate: Date; // دریافت تاریخ از بیرون
+};
+
+const DealCountdown = ({ targetDate }: DealCountdownProps) => {
   const [time, setTime] = useState<ReturnType<typeof calculateTimeRemaining>>();
 
   useEffect(() => {
-    setTime(calculateTimeRemaining(TARGET_DATE));
+    setTime(calculateTimeRemaining(targetDate));
 
     const timerInterval = setInterval(() => {
-      const newTime = calculateTimeRemaining(TARGET_DATE);
+      const newTime = calculateTimeRemaining(targetDate);
       setTime(newTime);
 
       if (
@@ -43,7 +44,7 @@ const DealCountdown = () => {
     }, 1000);
 
     return () => clearInterval(timerInterval);
-  }, []);
+  }, [targetDate]);
 
   // حالت بارگذاری
   if (!time) {
@@ -93,9 +94,9 @@ const DealCountdown = () => {
       <div className="flex flex-col gap-2 justify-center">
         <h3 className="text-3xl font-bold">پیشنهاد ویژه ماه</h3>
         <p>
-          آماده‌ی یک تجربه‌ی خرید متفاوت باشید! 🎉
-          در پیشنهادهای ویژه‌ی این ماه، هر خرید همراه با امتیازات و تخفیف‌های
-          اختصاصی است. این فرصت عالی را از دست ندهید! 🎁🛒
+          آماده‌ی یک تجربه‌ی خرید متفاوت باشید! 🎉 در پیشنهادهای ویژه‌ی این ماه،
+          هر خرید همراه با امتیازات و تخفیف‌های اختصاصی است. این فرصت عالی را از
+          دست ندهید! 🎁🛒
         </p>
         <ul className="grid grid-cols-4">
           <StatBox label="روز" value={time.days} />
