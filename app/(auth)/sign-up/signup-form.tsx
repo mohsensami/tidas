@@ -44,6 +44,30 @@ const SignUpForm = () => {
           />
         </div>
         <div>
+          <Label className="mb-2 text-sm" htmlFor="nationalCode">
+            کدملی
+          </Label>
+          <Input
+            id="nationalCode"
+            name="nationalCode"
+            type="text"
+            defaultValue={signUpDefaultValues.nationalCode}
+            autoComplete="name"
+          />
+        </div>
+        <div>
+          <Label className="mb-2 text-sm" htmlFor="phoneNumber">
+            تلفن همراه
+          </Label>
+          <Input
+            id="phoneNumber"
+            name="phoneNumber"
+            type="text"
+            defaultValue={signUpDefaultValues.phoneNumber}
+            autoComplete="name"
+          />
+        </div>
+        <div>
           <Label className="mb-2 text-sm" htmlFor="email">
             ایمیل
           </Label>

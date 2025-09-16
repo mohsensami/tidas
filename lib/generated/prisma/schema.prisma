@@ -44,6 +44,8 @@ model User {
   image         String?
   address       Json?     @db.Json
   paymentMethod String?
+  nationalCode  String?   @unique(map: "user_national_code_idx")
+  phoneNumber   String?   @unique(map: "user_phone_number_idx")
   createdAt     DateTime  @default(now()) @db.Timestamp(6)
   updatedAt     DateTime  @updatedAt
   account       Account[]

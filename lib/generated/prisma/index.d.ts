@@ -3001,6 +3001,8 @@ export namespace Prisma {
     emailVerified: Date | null
     image: string | null
     paymentMethod: string | null
+    nationalCode: string | null
+    phoneNumber: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3014,6 +3016,8 @@ export namespace Prisma {
     emailVerified: Date | null
     image: string | null
     paymentMethod: string | null
+    nationalCode: string | null
+    phoneNumber: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3028,6 +3032,8 @@ export namespace Prisma {
     image: number
     address: number
     paymentMethod: number
+    nationalCode: number
+    phoneNumber: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3043,6 +3049,8 @@ export namespace Prisma {
     emailVerified?: true
     image?: true
     paymentMethod?: true
+    nationalCode?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3056,6 +3064,8 @@ export namespace Prisma {
     emailVerified?: true
     image?: true
     paymentMethod?: true
+    nationalCode?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3070,6 +3080,8 @@ export namespace Prisma {
     image?: true
     address?: true
     paymentMethod?: true
+    nationalCode?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3157,6 +3169,8 @@ export namespace Prisma {
     image: string | null
     address: JsonValue | null
     paymentMethod: string | null
+    nationalCode: string | null
+    phoneNumber: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -3188,6 +3202,8 @@ export namespace Prisma {
     image?: boolean
     address?: boolean
     paymentMethod?: boolean
+    nationalCode?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     account?: boolean | User$accountArgs<ExtArgs>
@@ -3208,6 +3224,8 @@ export namespace Prisma {
     image?: boolean
     address?: boolean
     paymentMethod?: boolean
+    nationalCode?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3222,6 +3240,8 @@ export namespace Prisma {
     image?: boolean
     address?: boolean
     paymentMethod?: boolean
+    nationalCode?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3236,11 +3256,13 @@ export namespace Prisma {
     image?: boolean
     address?: boolean
     paymentMethod?: boolean
+    nationalCode?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "emailVerified" | "image" | "address" | "paymentMethod" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "emailVerified" | "image" | "address" | "paymentMethod" | "nationalCode" | "phoneNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     account?: boolean | User$accountArgs<ExtArgs>
     session?: boolean | User$sessionArgs<ExtArgs>
@@ -3271,6 +3293,8 @@ export namespace Prisma {
       image: string | null
       address: Prisma.JsonValue | null
       paymentMethod: string | null
+      nationalCode: string | null
+      phoneNumber: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3710,6 +3734,8 @@ export namespace Prisma {
     readonly image: FieldRef<"User", 'String'>
     readonly address: FieldRef<"User", 'Json'>
     readonly paymentMethod: FieldRef<"User", 'String'>
+    readonly nationalCode: FieldRef<"User", 'String'>
+    readonly phoneNumber: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -12162,6 +12188,8 @@ export namespace Prisma {
     image: 'image',
     address: 'address',
     paymentMethod: 'paymentMethod',
+    nationalCode: 'nationalCode',
+    phoneNumber: 'phoneNumber',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12540,6 +12568,8 @@ export namespace Prisma {
     image?: StringNullableFilter<"User"> | string | null
     address?: JsonNullableFilter<"User">
     paymentMethod?: StringNullableFilter<"User"> | string | null
+    nationalCode?: StringNullableFilter<"User"> | string | null
+    phoneNumber?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     account?: AccountListRelationFilter
@@ -12559,6 +12589,8 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     paymentMethod?: SortOrderInput | SortOrder
+    nationalCode?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     account?: AccountOrderByRelationAggregateInput
@@ -12571,6 +12603,8 @@ export namespace Prisma {
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
+    nationalCode?: string
+    phoneNumber?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -12588,7 +12622,7 @@ export namespace Prisma {
     Cart?: CartListRelationFilter
     Order?: OrderListRelationFilter
     Review?: ReviewListRelationFilter
-  }, "id" | "email">
+  }, "id" | "email" | "nationalCode" | "phoneNumber">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -12600,6 +12634,8 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     paymentMethod?: SortOrderInput | SortOrder
+    nationalCode?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -12620,6 +12656,8 @@ export namespace Prisma {
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
     address?: JsonNullableWithAggregatesFilter<"User">
     paymentMethod?: StringNullableWithAggregatesFilter<"User"> | string | null
+    nationalCode?: StringNullableWithAggregatesFilter<"User"> | string | null
+    phoneNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -13275,6 +13313,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountCreateNestedManyWithoutUserInput
@@ -13294,6 +13334,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -13313,6 +13355,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUpdateManyWithoutUserNestedInput
@@ -13332,6 +13376,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -13351,6 +13397,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13365,6 +13413,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13379,6 +13429,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14290,6 +14342,8 @@ export namespace Prisma {
     image?: SortOrder
     address?: SortOrder
     paymentMethod?: SortOrder
+    nationalCode?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -14303,6 +14357,8 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     paymentMethod?: SortOrder
+    nationalCode?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -14316,6 +14372,8 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     paymentMethod?: SortOrder
+    nationalCode?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16066,6 +16124,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     session?: SessionCreateNestedManyWithoutUserInput
@@ -16084,6 +16144,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -16118,6 +16180,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     session?: SessionUpdateManyWithoutUserNestedInput
@@ -16136,6 +16200,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -16154,6 +16220,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountCreateNestedManyWithoutUserInput
@@ -16172,6 +16240,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -16206,6 +16276,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUpdateManyWithoutUserNestedInput
@@ -16224,6 +16296,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -16242,6 +16316,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountCreateNestedManyWithoutUserInput
@@ -16260,6 +16336,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -16294,6 +16372,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUpdateManyWithoutUserNestedInput
@@ -16312,6 +16392,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -16330,6 +16412,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountCreateNestedManyWithoutUserInput
@@ -16348,6 +16432,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -16410,6 +16496,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUpdateManyWithoutUserNestedInput
@@ -16428,6 +16516,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -16675,6 +16765,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountCreateNestedManyWithoutUserInput
@@ -16693,6 +16785,8 @@ export namespace Prisma {
     image?: string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: string | null
+    nationalCode?: string | null
+    phoneNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -16774,6 +16868,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUpdateManyWithoutUserNestedInput
@@ -16792,6 +16888,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableJsonNullValueInput | InputJsonValue
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    nationalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput

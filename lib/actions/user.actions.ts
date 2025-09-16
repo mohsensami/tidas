@@ -55,10 +55,11 @@ export async function signUp(prevState: unknown, formData: FormData) {
       email: formData.get("email"),
       confirmPassword: formData.get("confirmPassword"),
       password: formData.get("password"),
+      nationalCode: formData.get("nationalCode"),
+      phoneNumber: formData.get("phoneNumber"),
     });
 
     const plainPassword = user.password;
-
     user.password = hashSync(user.password, 10);
 
     await prisma.user.create({
@@ -66,6 +67,8 @@ export async function signUp(prevState: unknown, formData: FormData) {
         name: user.name,
         email: user.email,
         password: user.password,
+        nationalCode: user.nationalCode,
+        phoneNumber: user.phoneNumber,
       },
     });
 
@@ -81,11 +84,7 @@ export async function signUp(prevState: unknown, formData: FormData) {
     if (isRedirectError(error)) {
       throw error;
     }
-
-    return {
-      success: false,
-      message: formatError(errorArray),
-    };
+    return { success: false, message: formatError(errorArray) };
   }
 }
 

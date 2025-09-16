@@ -41,15 +41,21 @@ export const signInFormSchema = z.object({
 // Schema for signing up a user
 export const signUpFormSchema = z
   .object({
-    name: z.string().min(3, "Name must be at least 3 characters"),
-    email: z.string().min(3, "Email must be at least 3 characters"),
-    password: z.string().min(3, "Password must be at least 3 characters"),
+    name: z.string().min(3, "نام باید حداقل ۳ کاراکتر باشد"),
+    email: z.email("ایمیل معتبر نیست"),
+    password: z.string().min(6, "رمز عبور باید حداقل ۶ کاراکتر باشد"),
     confirmPassword: z
       .string()
-      .min(3, "Confirm password must be at least 3 characters"),
+      .min(6, "تأیید رمز عبور باید حداقل ۶ کاراکتر باشد"),
+    nationalCode: z
+      .string()
+      .regex(/^\d{10}$/, "کد ملی باید دقیقاً ۱۰ رقم باشد"),
+    phoneNumber: z
+      .string()
+      .regex(/^09\d{9}$/, "شماره موبایل باید با 09 شروع شده و 11 رقم باشد"),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
+    message: "رمز عبور و تأیید آن یکسان نیستند",
     path: ["confirmPassword"],
   });
 
