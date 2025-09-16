@@ -33,8 +33,8 @@ const SignUp = async (props: {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <Card>
+    <div className="items-center flex justify-center h-screen w-full">
+      <Card className="md:w-2/3">
         <CardHeader className="space-y-4">
           <Link href="/" className="flex-center">
             <Image
