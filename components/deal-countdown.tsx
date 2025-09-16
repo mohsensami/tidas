@@ -5,10 +5,10 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-// Static target date (replace with desired date)
+// تاریخ هدف ثابت (می‌توانید تغییر دهید)
 const TARGET_DATE = new Date("2024-12-20T00:00:00");
 
-// Function to calculate time remaining
+// تابع محاسبه زمان باقی‌مانده
 const calculateTimeRemaining = (targetDate: Date) => {
   const currentTime = new Date();
   const timeDifference = Math.max(Number(targetDate) - Number(currentTime), 0);
@@ -26,14 +26,12 @@ const DealCountdown = () => {
   const [time, setTime] = useState<ReturnType<typeof calculateTimeRemaining>>();
 
   useEffect(() => {
-    // Calculate initial time remaining on the client
     setTime(calculateTimeRemaining(TARGET_DATE));
 
     const timerInterval = setInterval(() => {
       const newTime = calculateTimeRemaining(TARGET_DATE);
       setTime(newTime);
 
-      // Clear when countdown is over
       if (
         newTime.days === 0 &&
         newTime.hours === 0 &&
@@ -47,18 +45,18 @@ const DealCountdown = () => {
     return () => clearInterval(timerInterval);
   }, []);
 
-  // Render a loading state during hydration
+  // حالت بارگذاری
   if (!time) {
     return (
       <section className="grid grid-cols-1 md:grid-cols-2 my-20">
         <div className="flex flex-col gap-2 justify-center">
-          <h3 className="text-3xl font-bold">Loading Countdown...</h3>
+          <h3 className="text-3xl font-bold">در حال بارگذاری شمارش معکوس...</h3>
         </div>
       </section>
     );
   }
 
-  // If the countdown is over, display fallback UI
+  // وقتی شمارش معکوس تمام شد
   if (
     time.days === 0 &&
     time.hours === 0 &&
@@ -68,20 +66,20 @@ const DealCountdown = () => {
     return (
       <section className="grid grid-cols-1 md:grid-cols-2 my-20">
         <div className="flex flex-col gap-2 justify-center">
-          <h3 className="text-3xl font-bold">Deal Has Ended</h3>
+          <h3 className="text-3xl font-bold">تخفیف به پایان رسید</h3>
           <p>
-            This deal is no longer available. Check out our latest promotions!
+            این پیشنهاد دیگر فعال نیست. جدیدترین تخفیف‌های ما را بررسی کنید!
           </p>
           <div className="text-center">
             <Button asChild>
-              <Link href="/search">View Products</Link>
+              <Link href="/search">مشاهده محصولات</Link>
             </Button>
           </div>
         </div>
         <div className="flex justify-center">
           <Image
             src="/images/promo.jpg"
-            alt="promotion"
+            alt="تخفیف ویژه"
             width={300}
             height={200}
           />
@@ -93,29 +91,28 @@ const DealCountdown = () => {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 my-20">
       <div className="flex flex-col gap-2 justify-center">
-        <h3 className="text-3xl font-bold">Deal Of The Month</h3>
+        <h3 className="text-3xl font-bold">پیشنهاد ویژه ماه</h3>
         <p>
-          Get ready for a shopping experience like never before with our Deals
-          of the Month! Every purchase comes with exclusive perks and offers,
-          making this month a celebration of savvy choices and amazing deals.
-          Don&apos;t miss out! 🎁🛒
+          آماده‌ی یک تجربه‌ی خرید متفاوت باشید! 🎉
+          در پیشنهادهای ویژه‌ی این ماه، هر خرید همراه با امتیازات و تخفیف‌های
+          اختصاصی است. این فرصت عالی را از دست ندهید! 🎁🛒
         </p>
         <ul className="grid grid-cols-4">
-          <StatBox label="Days" value={time.days} />
-          <StatBox label="Hours" value={time.hours} />
-          <StatBox label="Minutes" value={time.minutes} />
-          <StatBox label="Seconds" value={time.seconds} />
+          <StatBox label="روز" value={time.days} />
+          <StatBox label="ساعت" value={time.hours} />
+          <StatBox label="دقیقه" value={time.minutes} />
+          <StatBox label="ثانیه" value={time.seconds} />
         </ul>
         <div className="text-center">
           <Button asChild>
-            <Link href="/search">View Products</Link>
+            <Link href="/search">مشاهده محصولات</Link>
           </Button>
         </div>
       </div>
       <div className="flex justify-center">
         <Image
           src="/images/promo.jpg"
-          alt="promotion"
+          alt="تخفیف ویژه"
           width={300}
           height={200}
         />
