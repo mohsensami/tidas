@@ -79,7 +79,7 @@ const DealCountdown = ({ targetDate }: DealCountdownProps) => {
         </div>
         <div className="flex justify-center">
           <Image
-            src="/images/promo.jpg"
+            src="/images/promo.png"
             alt="تخفیف ویژه"
             width={300}
             height={200}
@@ -110,9 +110,9 @@ const DealCountdown = ({ targetDate }: DealCountdownProps) => {
           </Button>
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-end">
         <Image
-          src="/images/promo.jpg"
+          src="/images/promo.png"
           alt="تخفیف ویژه"
           width={300}
           height={200}
