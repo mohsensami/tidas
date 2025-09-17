@@ -31,10 +31,10 @@ export const updateProductSchema = insertProductSchema.extend({
 
 // Schema for signing in a user
 export const signInFormSchema = z.object({
-  email: z
+  nationalCode: z
     .string()
-    .email("Invalid email address")
-    .min(3, "Email must be at least 3 characters"),
+    .regex(/^\d{10}$/, "کد ملی باید دقیقاً ۱۰ رقم باشد")
+    .min(10, "کد ملی باید ۱۰ رقم باشد"),
   password: z.string().min(3, "Password must be at least 3 characters"),
 });
 

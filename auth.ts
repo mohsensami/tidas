@@ -21,8 +21,8 @@ export const config = {
   providers: [
     CredentialsProvider({
       credentials: {
-        email: {
-          type: "email",
+        nationalCode: {
+          type: "text",
         },
         password: { type: "password" },
       },
@@ -32,7 +32,7 @@ export const config = {
         // Find user in database
         const user = await prisma.user.findFirst({
           where: {
-            email: credentials.email as string,
+            nationalCode: credentials.nationalCode as string,
           },
         });
         // Check if user exists and password is correct

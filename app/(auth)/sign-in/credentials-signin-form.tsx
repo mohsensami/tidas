@@ -29,16 +29,16 @@ const CredentialsSignInForm = () => {
       <input type="hidden" name="callbackUrl" value={callbackUrl} />
       <div className="space-y-6">
         <div>
-          <Label className="mb-2" htmlFor="email">
-            آدرس ایمیل
+          <Label className="mb-2" htmlFor="nationalCode">
+            نام کاربری (کد ملی)
           </Label>
           <Input
-            id="email"
-            name="email"
+            id="nationalCode"
+            name="nationalCode"
             required
-            type="email"
-            defaultValue={signInDefaultValues.email}
-            autoComplete="email"
+            type="text"
+            defaultValue={signInDefaultValues.nationalCode}
+            autoComplete="nationalCode"
             dir="ltr"
           />
         </div>

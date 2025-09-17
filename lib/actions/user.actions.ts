@@ -26,7 +26,7 @@ export async function signInWithCredentials(
   try {
     // Set user from form and validate it with Zod schema
     const user = signInFormSchema.parse({
-      email: formData.get("email"),
+      nationalCode: formData.get("nationalCode"),
       password: formData.get("password"),
     });
 
@@ -38,7 +38,7 @@ export async function signInWithCredentials(
       throw error;
     }
 
-    return { success: false, message: "Invalid email or password" };
+    return { success: false, message: "Invalid nationalCode or password" };
   }
 }
 
@@ -73,7 +73,7 @@ export async function signUp(prevState: unknown, formData: FormData) {
     });
 
     await signIn("credentials", {
-      email: user.email,
+      nationalCode: user.nationalCode,
       password: plainPassword,
     });
 
