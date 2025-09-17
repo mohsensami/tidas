@@ -48,6 +48,8 @@ export const config = {
               name: user.name,
               email: user.email,
               role: user.role,
+              nationalCode: user.nationalCode,
+              phoneNumber: user.phoneNumber,
             };
           }
         }

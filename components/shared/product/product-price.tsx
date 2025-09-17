@@ -13,8 +13,8 @@ const ProductPrice = ({
   const [intValue, floatValue] = stringValue.split(".");
 
   return (
-    <p className={cn("text-xl", className)}>
-      {formatCurrency(intValue)}
+    <p className={cn("text-sm", className)}>
+      {formatCurrency(intValue)} تومان
       {/* <span className="text-xs align-super">تومان</span> */}
       {/* <span className="text-xs align-super">.{floatValue}</span> */}
     </p>
