@@ -8,22 +8,27 @@ import {
 import ViewAllProductsButton from "@/components/view-all-products-button";
 import IconBoxes from "@/components/icon-boxes";
 import DealCountdown from "@/components/deal-countdown";
+import Hero from "@/components/hero";
 
 const HomePage = async () => {
   const latestProducts: any = await getLatestProducts();
   const featuredProducts = await getFeaturedProducts();
   return (
     <div className="space-y-8">
-      <div dir="ltr">
+      {/* <div dir="ltr">
         {featuredProducts.length > 0 && (
           <ProductCarousel data={featuredProducts} />
         )}
-      </div>
+      </div> */}
 
-      <ProductList title="جدیدترین محصولات" data={latestProducts} />
-      <ViewAllProductsButton />
-      <DealCountdown targetDate={new Date("2026-12-20T00:00:00")} />
-      <IconBoxes />
+      <Hero />
+
+      <div className="wrapper">
+        <ProductList title="جدیدترین محصولات" data={latestProducts} />
+        <ViewAllProductsButton />
+        <DealCountdown targetDate={new Date("2026-12-20T00:00:00")} />
+        <IconBoxes />
+      </div>
     </div>
   );
 };
