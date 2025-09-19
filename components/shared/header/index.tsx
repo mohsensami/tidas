@@ -15,7 +15,7 @@ const Header = () => {
       <div className="wrapper flex flex-between">
         <div className="flex-start">
           <Link href="/" className="flex-start">
-            <Image
+            {/* <Image
               priority={true}
               src="/images/logo.jpg"
               width={48}
@@ -24,8 +24,14 @@ const Header = () => {
             />
             <span className="hidden lg:block font-bold text-2xl mr-3">
               {APP_NAME}
-            </span>
+            </span> */}
           </Link>
+          <nav className="md:flex hidden w-full max-w-xs gap-1 text-xs gap-4">
+            <Link href="/">صفحه نخست</Link>
+            <Link href="/search"> محصولات</Link>
+            <Link href="/about-us"> درباره ما</Link>
+            <Link href="/contact-us"> تماس با ما</Link>
+          </nav>
         </div>
         <div className="">
           <Search />

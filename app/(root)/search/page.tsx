@@ -124,7 +124,7 @@ const SearchPage = async (props: {
   const categories = await getAllCategories();
 
   return (
-    <div className="grid md:grid-cols-5 md:gap-5">
+    <div className="wrapper grid md:grid-cols-5 md:gap-5">
       <div className="filter-links">
         {/* Category Links */}
         <div className="text-xl mt-3 mb-2">دسته بندی ها</div>
