@@ -111,7 +111,7 @@ export default function Hero() {
                   <div>
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-[12px] font-semibold text-emerald-700 shadow">
                       <BadgeCheck className="size-4" />
-                      تاز‌ه‌چینی • ارسال سریع • تضمین کیفیت
+                      تیداس • ارسال سریع • تضمین کیفیت
                     </span>
 
                     <h1 className="mt-4 text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-white drop-shadow">

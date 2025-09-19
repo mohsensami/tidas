@@ -1,3 +1,4 @@
+import ContactFab from "@/components/shared/Contact-fab";
 import Footer from "../../components/footer";
 import Header from "../../components/shared/header";
 
@@ -11,6 +12,7 @@ export default function RootLayout({
       <Header />
       <main className="flex-1 ">{children}</main>
       <Footer />
+      <ContactFab />
     </div>
   );
 }
