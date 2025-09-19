@@ -1,6 +1,7 @@
 import ContactFab from "@/components/shared/Contact-fab";
 import Footer from "../../components/footer";
 import Header from "../../components/shared/header";
+import ScrollToTop from "@/components/shared/ScrollToTop";
 
 export default function RootLayout({
   children,
@@ -13,6 +14,7 @@ export default function RootLayout({
       <main className="flex-1 ">{children}</main>
       <Footer />
       <ContactFab />
+      <ScrollToTop />
     </div>
   );
 }
