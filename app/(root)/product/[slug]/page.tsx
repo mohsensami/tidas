@@ -28,7 +28,7 @@ const ProductDetailsPage = async (props: {
 
   return (
     <>
-      <section>
+      <section className="wrapper">
         <div className="grid grid-cols-1 md:grid-cols-5">
           {/* Images Column */}
           <div className="col-span-2">
@@ -96,7 +96,7 @@ const ProductDetailsPage = async (props: {
           </div>
         </div>
       </section>
-      <section className="mt-10">
+      <section className="mt-10 wrapper">
         <h2 className="h4-bold  mb-5">دیدگاه کاربران</h2>
         <ReviewList
           productId={product.id}

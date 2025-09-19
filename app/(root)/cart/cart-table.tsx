@@ -19,22 +19,20 @@ import {
 } from "@/components/ui/table";
 import toast from "react-hot-toast";
 import { formatCurrency } from "@/lib/utils";
+import EmptyCart from "./EmptyCart";
 
 const CartTable = ({ cart }: { cart?: Cart }) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   return (
     <>
-      <h1 className="py-4 h3-bold">سبد خرید</h1>
       {!cart || cart.items.length === 0 ? (
         <div>
-          سبد خرید خالی است.{" "}
-          <Link className="text-primary" href="/">
-            محصولات
-          </Link>
+          <EmptyCart />
         </div>
       ) : (
-        <div className="grid md:grid-cols-4 md:gap-5">
+        <div className="wrapper grid md:grid-cols-4 md:gap-5">
+          <h1 className="py-4 h3-bold">سبد خرید</h1>
           <div className="overflow-x-auto md:col-span-3">
             <Table>
               <TableHeader>

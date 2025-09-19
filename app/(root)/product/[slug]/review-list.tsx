@@ -50,7 +50,7 @@ const ReviewList = ({
   }, [productId]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 wrapper">
       {reviews.length === 0 && <div>No reviews yet</div>}
       {userId ? (
         <>
