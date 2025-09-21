@@ -51,7 +51,7 @@ const ReviewList = ({
 
   return (
     <div className="space-y-4 wrapper">
-      {reviews.length === 0 && <div>No reviews yet</div>}
+      {reviews.length === 0 && <div>دیدگاهی ثبت نشده است</div>}
       {userId ? (
         <>
           {/* REVIEW FORM HERE */}

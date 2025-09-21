@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState, FormEvent } from "react";
 import { Truck, AlarmClock, Headset, ShieldCheck, Phone } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 // import Input from "./Input";
 // import Button from "./Button";
 
@@ -155,7 +157,7 @@ export default function Footer() {
                   برای اطلاع از آخرین تخفیف‌ها شماره تماست رو وارد کن.
                 </p>
                 <form onSubmit={onSubmit} className="space-y-3">
-                  {/* <Input
+                  <Input
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     inputMode="tel"
@@ -163,9 +165,9 @@ export default function Footer() {
                     icon={<Phone className="w-4 h-4" />}
                     className="bg-white border border-border focus:ring-primary"
                   />
-                  <Button type="submit" variant="primary" className="w-full">
+                  <Button type="submit" className="w-full">
                     ارسال
-                  </Button> */}
+                  </Button>
                 </form>
               </div>
             </div>
@@ -236,10 +238,10 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* مجله گل‌فروش (همانی که داشتی) */}
+              {/* مجله تیداس گلد (همانی که داشتی) */}
               <div>
                 <h4 className="mb-3 text-base font-extrabold text-primary">
-                  مجله گل‌فروش
+                  مجله تیداس گلد
                 </h4>
                 <ul className="space-y-2">
                   {loading && (
