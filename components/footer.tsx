@@ -162,7 +162,6 @@ export default function Footer() {
                     onChange={(e) => setPhone(e.target.value)}
                     inputMode="tel"
                     placeholder="شماره تماس خود را وارد کنید"
-                    icon={<Phone className="w-4 h-4" />}
                     className="bg-white border border-border focus:ring-primary"
                   />
                   <Button type="submit" className="w-full">
