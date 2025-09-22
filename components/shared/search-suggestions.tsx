@@ -146,3 +146,4 @@ const SearchSuggestions = ({ query, onClose }: SearchSuggestionsProps) => {
 };
 
 export default SearchSuggestions;
+

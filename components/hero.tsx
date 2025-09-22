@@ -21,11 +21,11 @@ type Slide = { src: string; alt: string };
 
 const SLIDES: Slide[] = [
   {
-    src: "https://tokeniko.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fheader2160.7218fe94.webp&w=3840&q=75",
+    src: "https://utfs.io/f/DgbA572IO3Bl9PkWIB4sEptm0AlFXkor8jNbdHScOGCqne2D",
     alt: "tokeniko",
   },
   {
-    src: "https://tokeniko.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsilver-product.341d3c42.webp&w=750&q=75",
+    src: "https://utfs.io/f/DgbA572IO3BlY2N7MIEcp8ugteHsUIzoV1MDNq20RvnlGkiC",
     alt: "tokeniko",
   },
   //   {

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import loader from "@/assets/loader.gif";
+import loader from "@/assets/loading.svg";
 
 const Loading = () => {
   return (
