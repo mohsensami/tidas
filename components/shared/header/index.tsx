@@ -26,11 +26,12 @@ const Header = () => {
               {APP_NAME}
             </span> */}
           </Link>
-          <nav className="md:flex hidden w-full max-w-xs gap-1 text-xs gap-4">
+          <nav className="md:flex hidden w-full  gap-1 text-xs gap-4">
             <Link href="/">صفحه نخست</Link>
             <Link href="/search"> محصولات</Link>
             <Link href="/about-us"> درباره ما</Link>
             <Link href="/contact-us"> تماس با ما</Link>
+            <Link href="/faq"> سوالات متداول</Link>
           </nav>
         </div>
         <div className="">

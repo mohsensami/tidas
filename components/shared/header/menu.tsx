@@ -14,7 +14,7 @@ const Menu = () => {
           <Button asChild variant="ghost">
             <Link href="/cart">
               <ShoppingCart />
-              سبد خرید
+              {/* سبد خرید */}
             </Link>
           </Button>
           <UserButton />
