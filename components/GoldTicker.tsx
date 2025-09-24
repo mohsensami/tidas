@@ -1,7 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+  DrawerDescription,
+} from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, TrendingUp, TrendingDown } from "lucide-react";
 
 type Item = {
   name: string;
@@ -12,12 +22,11 @@ type Item = {
 
 export default function GoldTicker() {
   const [data, setData] = useState<Item[]>([]);
-  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`/api/ticker`, { cache: "no-store" });
+        const res = await fetch("/api/ticker", { cache: "no-store" });
         const json = await res.json();
 
         const gold = json.gold?.map((g: any) => ({
@@ -28,9 +37,7 @@ export default function GoldTicker() {
         }));
 
         const currency = json.currency
-          ?.filter(
-            (c: any) => ["USD", "EUR", "USDT_IRT"].includes(c.symbol) // دلار، یورو، تتر
-          )
+          ?.filter((c: any) => ["USD", "EUR", "USDT_IRT"].includes(c.symbol))
           .map((c: any) => ({
             name: c.name,
             price: c.price,
@@ -43,36 +50,54 @@ export default function GoldTicker() {
         console.error("Failed to fetch ticker data", e);
       }
     }
+
     fetchData();
-    const interval = setInterval(fetchData, 60000); // هر 1 دقیقه آپدیت
+    const interval = setInterval(fetchData, 60000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="w-full bg-yellow-50 border-b border-yellow-200 text-sm">
-      {/* هدر آکاردیون */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-full px-4 py-2 bg-yellow-100 hover:bg-yellow-200 transition"
-      >
-        <span className="font-medium text-yellow-800">
-          📊 قیمت لحظه‌ای طلا و ارز
-        </span>
-        {open ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-      </button>
+    <Drawer>
+      {/* دکمه باز کردن Drawer */}
+      <DrawerTrigger asChild>
+        <Button className="fixed top-1/4 left-4 rotate-90 origin-left rounded-tr-none rounded-br-none z-10">
+          💰 نمایش قیمت طلا و ارز
+        </Button>
+      </DrawerTrigger>
 
-      {/* لیست داده‌ها */}
-      {open && (
-        <div className="overflow-x-auto whitespace-nowrap py-2 animate-slide">
-          <div className="flex gap-6 px-4">
-            {data.map((item, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span className="font-medium text-gray-800">{item.name}:</span>
-                <span className="text-gray-900">
-                  {item.price.toLocaleString()} {item.unit}
+      <DrawerContent className="w-80 bg-yellow-50">
+        <DrawerHeader>
+          <DrawerTitle className="flex items-center justify-between">
+            📊 قیمت لحظه‌ای
+            <DrawerClose asChild>
+              <Button variant="ghost" size="sm">
+                <ChevronLeft />
+              </Button>
+            </DrawerClose>
+          </DrawerTitle>
+          <DrawerDescription>
+            قیمت طلا و ارز بصورت لحظه‌ای و آپدیت شده
+          </DrawerDescription>
+        </DrawerHeader>
+
+        <div className="space-y-2 overflow-y-auto p-4">
+          {data.map((item, i) => (
+            <div
+              key={i}
+              className="flex justify-between items-center p-2 bg-white rounded shadow-sm"
+            >
+              <div>
+                <span className="font-medium">{item.name}</span>
+                <span className="ml-1 text-gray-500 text-sm">
+                  ({item.unit})
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-semibold">
+                  {item.price.toLocaleString()}
                 </span>
                 <span
-                  className={`text-xs ${
+                  className={`text-sm flex items-center gap-1 ${
                     item.change_percent > 0
                       ? "text-green-600"
                       : item.change_percent < 0
@@ -80,18 +105,18 @@ export default function GoldTicker() {
                         : "text-gray-500"
                   }`}
                 >
-                  {item.change_percent > 0
-                    ? "▲"
-                    : item.change_percent < 0
-                      ? "▼"
-                      : ""}
+                  {item.change_percent > 0 ? (
+                    <TrendingUp size={14} />
+                  ) : item.change_percent < 0 ? (
+                    <TrendingDown size={14} />
+                  ) : null}
                   {item.change_percent}%
                 </span>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      )}
-    </div>
+      </DrawerContent>
+    </Drawer>
   );
 }
