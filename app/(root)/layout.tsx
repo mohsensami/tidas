@@ -18,7 +18,7 @@ export default function RootLayout({
         <ClientLayout>{children}</ClientLayout>
       </main>
       <Footer />
-      <ContactFab />
+      {/* <ContactFab /> */}
       <ScrollToTop />
     </div>
   );

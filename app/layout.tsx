@@ -5,6 +5,7 @@ import "../styles/fonts.css";
 import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from "../lib/constants";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
+import Script from "next/script";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -46,6 +47,22 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
       </body>
+      <Script id="goftino-widget" strategy="afterInteractive">
+        {`
+          !function(){
+            var i="upytyh",a=window,d=document;
+            function g(){
+              var g=d.createElement("script"),
+                  s="https://www.goftino.com/widget/"+i,
+                  l=localStorage.getItem("goftino_"+i);
+              g.async=!0;
+              g.src=l ? s+"?o="+l : s;
+              d.getElementsByTagName("head")[0].appendChild(g);
+            }
+            "complete"===d.readyState ? g() : a.attachEvent ? a.attachEvent("onload",g) : a.addEventListener("load",g,!1);
+          }();
+        `}
+      </Script>
     </html>
   );
 }
