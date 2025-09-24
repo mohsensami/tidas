@@ -163,6 +163,15 @@
   }
 }
 
+@layer utilities {
+  .bg-tidas {
+    background-color: #192440; /* Example color */
+  }
+  .text-tidas {
+    color: gold;
+  }
+}
+
 /* Uploadthing button text override*/
 html.dark .upload-field .text-white {
   color: #ffffff !important;

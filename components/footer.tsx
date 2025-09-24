@@ -98,7 +98,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="border-t border-border bg-background text-text bg-white">
+    <footer className="border-t border-border bg-tidas text-tidas ">
       {/* ویژگی‌ها */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
@@ -107,7 +107,7 @@ export default function Footer() {
             <div className="rounded-full p-3 ring-1 ring-border bg-white text-blue-700">
               <Truck className="w-6 h-6" />
             </div>
-            <div className="text-sm font-bold">ارسال به شهر تهران</div>
+            <div className="text-sm  text-white">ارسال به شهر تهران</div>
             <div className="text-xs text-text-muted">
               در کمتر از ۳ ساعت از ما تحویل بگیرید!
             </div>
@@ -116,7 +116,7 @@ export default function Footer() {
             <div className="rounded-full p-3 ring-1 ring-border bg-white text-blue-700">
               <AlarmClock className="w-6 h-6" />
             </div>
-            <div className="text-sm font-bold">زمان و نحوه دریافت </div>
+            <div className="text-sm  text-white">زمان و نحوه دریافت </div>
             <div className="text-xs text-text-muted">
               ارسال از ۹ تا ۱۹ در شهر تهران
             </div>
@@ -125,16 +125,16 @@ export default function Footer() {
             <div className="rounded-full p-3 ring-1 ring-border bg-white text-blue-700">
               <Headset className="w-6 h-6" />
             </div>
-            <div className="text-sm font-bold">پشتیبانی همیشگی از </div>
+            <div className="text-sm  text-white">پشتیبانی همیشگی از </div>
             <div className="text-xs text-text-muted">
-              آموزش نگهداری و تکثیر ان آپارتمانی
+              مشاوره فروش در واتس آپ
             </div>
           </div>
           <div className="flex flex-col items-center gap-2">
             <div className="rounded-full p-3 ring-1 ring-border bg-white text-blue-700">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <div className="text-sm font-bold">ضمانت تحویل سالم </div>
+            <div className="text-sm  text-white">ضمانت تحویل سالم </div>
             <div className="text-xs text-text-muted">
               بازگشت وجه در صورت آسیب
             </div>
@@ -150,10 +150,8 @@ export default function Footer() {
             <div>
               {/* ... همانی که داشتی ... */}
               <div className="rounded-2xl bg-muted p-5 shadow-sm">
-                <h3 className="text-base font-bold mb-3">
-                  همیشه اولین نفر باش!
-                </h3>
-                <p className="text-sm text-text-muted mb-4">
+                <h3 className="text-black  mb-3">همیشه اولین نفر باش!</h3>
+                <p className="text-sm text-black mb-4">
                   برای اطلاع از آخرین تخفیف‌ها شماره تماست رو وارد کن.
                 </p>
                 <form onSubmit={onSubmit} className="space-y-3">
@@ -175,7 +173,7 @@ export default function Footer() {
             <div className="md:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-6">
               {/* محصولات جدید (به‌جای دسته‌بندی ثابت) */}
               <div>
-                <h4 className="mb-3 text-base font-extrabold text-primary">
+                <h4 className="mb-3 text-white font-extrabold text-primary">
                   محصولات جدید
                 </h4>
                 <ul className="space-y-2 text-sm">
@@ -205,7 +203,7 @@ export default function Footer() {
 
               {/* لینک‌های خدمات مشتریان (بدون تغییر) */}
               <div>
-                <h4 className="mb-3 text-base font-extrabold text-primary">
+                <h4 className="mb-3 text-white font-extrabold text-primary">
                   خدمات مشتریان
                 </h4>
                 <ul className="space-y-2 text-sm">
@@ -239,7 +237,7 @@ export default function Footer() {
 
               {/* مجله تیداس گلد (همانی که داشتی) */}
               <div>
-                <h4 className="mb-3 text-base font-extrabold text-primary">
+                <h4 className="mb-3 text-white font-extrabold text-primary">
                   مجله تیداس گلد
                 </h4>
                 <ul className="space-y-2">
@@ -276,7 +274,7 @@ export default function Footer() {
           <div className="mt-10 border-t border-border pt-6 text-center text-xs text-text-muted mb-5 md:mb-0 pb-5">
             <span>
               تمامی حقوق این وب‌سایت متعلق به{" "}
-              <a href="/" className="text-primary font-bold">
+              <a href="/" className="text-primary ">
                 تیداس گلد
               </a>{" "}
               است.

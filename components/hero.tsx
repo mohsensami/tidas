@@ -128,8 +128,8 @@ export default function Hero() {
                     {/* CTA buttons */}
                     <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                       <Link
-                        href="/products"
-                        className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-500/30 transition-all hover:scale-[1.02] hover:bg-emerald-600"
+                        href="/search"
+                        className="inline-flex items-center justify-center rounded-xl bg-tidas px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-500/30 transition-all hover:scale-[1.02] hover:bg-emerald-600"
                       >
                         <ShoppingBag className="ms-2 size-4" />
                         مشاهده محصولات
