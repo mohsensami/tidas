@@ -92,7 +92,7 @@ const DealCountdown = ({ targetDate }: DealCountdownProps) => {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 my-20">
       <div className="flex flex-col gap-2 justify-center">
-        <h3 className="text-3xl font-bold">پیشنهاد ویژه ماه</h3>
+        <h3 className="text-3xl font-bold">پیشنهاد ویژه </h3>
         <p>
           آماده‌ی یک تجربه‌ی خرید متفاوت باشید! 🎉 در پیشنهادهای ویژه‌ی این ماه،
           هر خرید همراه با امتیازات و تخفیف‌های اختصاصی است. این فرصت عالی را از

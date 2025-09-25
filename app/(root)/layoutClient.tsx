@@ -11,8 +11,8 @@ export default function ClientLayout({
     <div>
       <div>
         <ProgressProvider
-          height="8px"
-          color="#192440"
+          height="4px"
+          color="#dfdc33ff"
           options={{ showSpinner: false }}
           shallowRouting
         >

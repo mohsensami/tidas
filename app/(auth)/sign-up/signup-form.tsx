@@ -118,7 +118,7 @@ const SignUpForm = () => {
           قبلا ثبت نام کرده اید؟{" "}
           <Link
             target="_self"
-            className="link"
+            className="link bg"
             href={`/sign-in?callbackUrl=${callbackUrl}`}
           >
             ورود

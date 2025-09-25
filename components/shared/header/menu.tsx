@@ -10,10 +10,10 @@ const Menu = () => {
     <>
       <div className="flex justify-end gap-3">
         <nav className="md:flex hidden w-full max-w-xs gap-1">
-          <ModeToggle />
+          {/* <ModeToggle /> */}
           <Button asChild variant="ghost">
             <Link href="/cart">
-              <ShoppingCart />
+              <ShoppingCart strokeWidth={3} />
               {/* سبد خرید */}
             </Link>
           </Button>

@@ -11,7 +11,7 @@ import Search from "./search";
 
 const Header = () => {
   return (
-    <header className="w-full border-b">
+    <header className="sticky top-0 z-50 bg-dark-blue text-gold text-tidas backdrop-blur border-b border-b-gold">
       <div className="wrapper flex flex-between">
         <div className="flex-start">
           <Link href="/" className="flex-start">
@@ -26,7 +26,7 @@ const Header = () => {
               {APP_NAME}
             </span> */}
           </Link>
-          <nav className="md:flex hidden w-full  gap-1 text-xs gap-4">
+          <nav className="md:flex hidden w-full text-xs gap-4">
             <Link href="/">صفحه نخست</Link>
             <Link href="/search"> محصولات</Link>
             <Link href="/about-us"> درباره ما</Link>

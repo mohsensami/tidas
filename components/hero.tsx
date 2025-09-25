@@ -87,13 +87,13 @@ export default function Hero() {
         aria-hidden
       />
       {/* نرم‌کننده رنگ/کنتراست */}
-      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-black/40 via-emerald-900/25 to-black/45" />
+      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-black/40 via-blue-900/25 to-black/45" />
       {/* blobهای لطیف برای عمق بصری */}
-      <div className="absolute -left-16 -top-10 h-72 w-72 rounded-full bg-emerald-400/25 blur-3xl animate-blob -z-10" />
-      <div className="absolute right-8 -top-10 h-64 w-64 rounded-full bg-sky-400/20 blur-3xl animate-blob animation-delay-2000 -z-10" />
-      <div className="absolute left-1/2 bottom-0 h-80 w-80 -translate-x-1/2 rounded-full bg-teal-300/20 blur-3xl animate-blob animation-delay-4000 -z-10" />
+      <div className="absolute -left-16 -top-10 h-72 w-72 rounded-full bg-blue-400/25 blur-3xl animate-blob -z-10" />
+      <div className="absolute right-8 -top-10 h-64 w-64 rounded-full bg-blue-400/20 blur-3xl animate-blob animation-delay-2000 -z-10" />
+      <div className="absolute left-1/2 bottom-0 h-80 w-80 -translate-x-1/2 rounded-full bg-blue-300/20 blur-3xl animate-blob animation-delay-4000 -z-10" />
       {/* beam ملایم */}
-      <div className="absolute inset-y-8 -left-1/3 w-[160%] -rotate-12 bg-gradient-to-r from-transparent via-emerald-300/25 to-transparent blur-3xl animate-shine -z-10" />
+      <div className="absolute inset-y-8 -left-1/3 w-[160%] -rotate-12 bg-gradient-to-r from-transparent via-blue-300/25 to-transparent blur-3xl animate-shine -z-10" />
       {/* تکسچر گرید خیلی ظریف */}
       <div className="absolute inset-0 opacity-[.06] mix-blend-overlay -z-10 [background:repeating-linear-gradient(0deg,rgba(255,255,255,.7),rgba(255,255,255,.7)_1px,transparent_1px,transparent_14px),repeating-linear-gradient(90deg,rgba(255,255,255,.7),rgba(255,255,255,.7)_1px,transparent_1px,transparent_14px)]" />
       {/* vignette برای تمرکز چشم */}
@@ -109,19 +109,19 @@ export default function Hero() {
                 <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
                   {/* Text side */}
                   <div>
-                    <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-[12px] font-semibold text-emerald-700 shadow">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-gold px-3 py-1 text-[12px] font-semibold text-dark-blue shadow mb-8">
                       <BadgeCheck className="size-4" />
                       تیداس • ارسال سریع • تضمین کیفیت
                     </span>
 
-                    <h1 className="mt-4 text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-white drop-shadow">
-                      سفارش آنلاین شمش های{" "}
-                      <span className="bg-gradient-to-l from-emerald-300 to-teal-100 bg-clip-text text-transparent">
-                        طلا
+                    <h1 className="mt-4 text-4xl md:text-6xl font-extrabold  text-white drop-shadow">
+                      تیــــداس{" "}
+                      <span className="bg-gradient-to-l from-gold to-teal-100 bg-clip-text text-transparent">
+                        گُلد
                       </span>
                     </h1>
 
-                    <p className="mt-5 max-w-xl text-white/90 md:text-lg leading-8">
+                    <p className="mt-5 max-w-xl text-gold md:text-lg leading-8">
                       خرید و فروش آنلاین طلا و انواع شمش طلا و نقره ضدجعل
                     </p>
 
@@ -129,7 +129,7 @@ export default function Hero() {
                     <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                       <Link
                         href="/search"
-                        className="inline-flex items-center justify-center rounded-xl bg-tidas px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-500/30 transition-all hover:scale-[1.02] hover:bg-emerald-600"
+                        className="inline-flex items-center justify-center rounded-xl bg-dark-blue px-6 py-3 font-semibold text-white shadow-lg shadow-gold transition-all hover:scale-[1.02] "
                       >
                         <ShoppingBag className="ms-2 size-4" />
                         مشاهده محصولات

@@ -35,7 +35,7 @@ const Search = async () => {
           name="q"
           type="text"
           placeholder="جستجو ..."
-          className="md:w-[100px] lg:w-[300px]"
+          className="md:w-[100px] lg:w-[300px] border border-gold placeholder:text-gold"
         />
         <Button>
           <SearchIcon />

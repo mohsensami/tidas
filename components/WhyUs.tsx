@@ -11,6 +11,7 @@ import {
   Headset,
   Leaf,
   Phone,
+  CircleStar,
 } from "lucide-react";
 import React from "react";
 import GoldIcon from "./icons/Gold";
@@ -46,7 +47,7 @@ export default function WhyUs() {
         {/* عنوان */}
         <h2 className="flex items-center justify-center gap-2 text-center text-2xl md:text-3xl font-extrabold text-white drop-shadow">
           چرا خرید از تیداس گلد
-          <Leaf className="w-6 h-6 text-emerald-300" />
+          <CircleStar className="w-6 h-6 text-gold" />
         </h2>
 
         {/* دسکتاپ */}
@@ -61,7 +62,7 @@ export default function WhyUs() {
                 <span className="text-[15px] font-semibold text-white/95">
                   {title}
                 </span>
-                <Icon className="w-8 h-8 text-emerald-300" />
+                <Icon className="w-8 h-8 text-gold" />
               </div>
             ))}
           </div>
@@ -79,7 +80,7 @@ export default function WhyUs() {
                 </p>
                 <Link
                   href="tel:0901xxxxxxx"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 text-sm font-semibold transition-colors shadow-lg shadow-emerald-600/30"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-dark-blue  text-gold px-5 py-3 text-sm font-semibold transition-colors shadow-lg shadow-gold"
                 >
                   <Phone className="w-4 h-4" />
                   0901xxxxxxx
@@ -107,11 +108,11 @@ export default function WhyUs() {
         {/* موبایل: دکمه تماس */}
         <div className="md:hidden mt-4">
           <Link
-            href="tel:09012764435"
-            className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 text-sm font-semibold transition-colors shadow-lg shadow-emerald-600/30"
+            href="tel:0901xxxxxxx"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-dark-blue hover:bg-emerald-700 text-white px-5 py-3 text-sm font-semibold transition-colors shadow-lg shadow-emerald-600/30"
           >
             <Phone className="w-4 h-4" />
-            09012764435
+            0901xxxxxxx
           </Link>
         </div>
       </div>
