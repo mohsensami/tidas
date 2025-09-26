@@ -12,7 +12,7 @@ import { cartItemSchema, insertCartSchema } from "../validators";
 import { prisma } from "@/db/prisma";
 import { Prisma } from "../generated/prisma";
 
-// Calculate cart price based on items
+// محاسبه قیمت سبد خرید بر اساس آیتم‌ها
 const calcPrice = (items: z.infer<typeof cartItemSchema>[]) => {
   const itemsPrice = round2(
       items.reduce((acc, item) => acc + Number(item.price) * item.qty, 0)
@@ -28,68 +28,68 @@ const calcPrice = (items: z.infer<typeof cartItemSchema>[]) => {
   };
 };
 
-// Add item to cart in database
+// افزودن آیتم به سبد خرید در پایگاه داده
 export const addItemToCart = async (data: z.infer<typeof cartItemSchema>) => {
   try {
-    // Check for session cart cookie
+    // بررسی کوکی سبد خرید سشن
     const sessionCartId = (await cookies()).get("sessionCartId")?.value;
-    if (!sessionCartId) throw new Error("Cart Session not found");
-    // Get session and user ID
+    if (!sessionCartId) throw new Error("سبد خرید سشن یافت نشد");
+    // گرفتن سشن و آیدی کاربر
     const session: any = await auth();
     const userId = session?.user.id as string | undefined;
-    // Get cart from database
+    // گرفتن سبد خرید از پایگاه داده
     const cart = await getMyCart();
-    // Parse and validate submitted item data
+    // اعتبارسنجی داده آیتم ارسال شده
     const item = cartItemSchema.parse(data);
-    // Find product in database
+    // یافتن محصول در پایگاه داده
     const product = await prisma.product.findFirst({
       where: { id: item.productId },
     });
 
-    if (!product) throw new Error("Product not found");
+    if (!product) throw new Error("محصول یافت نشد");
 
     if (!cart) {
-      // Create new cart object
+      // ایجاد سبد خرید جدید
       const newCart = insertCartSchema.parse({
         userId: userId,
         items: [item],
         sessionCartId: sessionCartId,
         ...calcPrice([item]),
       });
-      // Add to database
+      // افزودن به پایگاه داده
       await prisma.cart.create({
         data: newCart,
       });
 
-      // Revalidate product page
+      // بازاعتبارسنجی صفحه محصول
       revalidatePath(`/product/${product.slug}`);
 
       return {
         success: true,
-        message: "Item added to cart successfully",
+        message: "آیتم با موفقیت به سبد خرید اضافه شد",
       };
     } else {
-      // Check for existing item in cart
+      // بررسی آیتم موجود در سبد
       const existItem = (cart.items as CartItem[]).find(
         (x) => x.productId === item.productId
       );
-      // If not enough stock, throw error
+      // اگر موجودی کافی نباشد، خطا بده
       if (existItem) {
         if (product.stock < existItem.qty + 1) {
-          throw new Error("Not enough stock");
+          throw new Error("موجودی کافی نیست");
         }
 
-        // Increase quantity of existing item
+        // افزایش تعداد آیتم موجود
         (cart.items as CartItem[]).find(
           (x) => x.productId === item.productId
         )!.qty = existItem.qty + 1;
       } else {
-        // If stock, add item to cart
-        if (product.stock < 1) throw new Error("Not enough stock");
+        // اگر موجودی داشت، آیتم را اضافه کن
+        if (product.stock < 1) throw new Error("موجودی کافی نیست");
         cart.items.push(item);
       }
 
-      // Save to database
+      // ذخیره در پایگاه داده
       await prisma.cart.update({
         where: { id: cart.id },
         data: {
@@ -102,48 +102,48 @@ export const addItemToCart = async (data: z.infer<typeof cartItemSchema>) => {
 
       return {
         success: true,
-        message: `${product.name} ${
-          existItem ? "updated in" : "added to"
-        } cart successfully`,
+        message: `${product.name} با موفقیت ${
+          existItem ? "در" : "به"
+        } سبد خرید ${existItem ? "بروزرسانی شد" : "اضافه شد"}`,
       };
     }
 
-    // Testing
+    // تست
     console.log({
-      "Session Cart ID": sessionCartId,
-      "User ID": userId,
-      "Item Requested": item,
-      "Product Found": product,
+      "آی‌دی سبد خرید سشن": sessionCartId,
+      "آی‌دی کاربر": userId,
+      "آیتم درخواست شده": item,
+      "محصول یافت شده": product,
       cart: cart,
     });
 
     return {
       success: true,
-      message: "Testing Cart",
+      message: "تست سبد خرید",
     };
   } catch (error) {
     return { success: false, message: formatError(error) };
   }
 };
 
-//  Get user cart from database
+// گرفتن سبد خرید کاربر از پایگاه داده
 export async function getMyCart() {
-  // Check for session cart cookie
+  // بررسی کوکی سبد خرید سشن
   const sessionCartId = (await cookies()).get("sessionCartId")?.value;
   if (!sessionCartId) return undefined;
 
-  // Get session and user ID
+  // گرفتن سشن و آیدی کاربر
   const session = await auth();
   const userId = session?.user?.id ? (session?.user.id as string) : undefined;
 
-  // Get user cart from database
+  // گرفتن سبد خرید کاربر از پایگاه داده
   const cart = await prisma?.cart.findFirst({
     where: userId ? { userId: userId } : { sessionCartId: sessionCartId },
   });
 
   if (!cart) return undefined;
 
-  // Convert Decimal values to strings for compatibility with AddToCart component
+  // تبدیل مقادیر Decimal به رشته برای سازگاری با کامپوننت AddToCart
   return convertToPlainObject({
     ...cart,
     items: cart.items as CartItem[],
@@ -154,42 +154,42 @@ export async function getMyCart() {
   });
 }
 
-// Remove item from cart in database
+// حذف آیتم از سبد خرید در پایگاه داده
 export async function removeItemFromCart(productId: string) {
   try {
-    // Get session cart id
+    // گرفتن آی‌دی سبد خرید سشن
     const sessionCartId = (await cookies()).get("sessionCartId")?.value;
-    if (!sessionCartId) throw new Error("Cart Session not found");
+    if (!sessionCartId) throw new Error("سبد خرید سشن یافت نشد");
 
-    // Get product
+    // گرفتن محصول
     const product = await prisma.product.findFirst({
       where: { id: productId },
     });
-    if (!product) throw new Error("Product not found");
+    if (!product) throw new Error("محصول یافت نشد");
 
-    // Get user cart
+    // گرفتن سبد خرید کاربر
     const cart = await getMyCart();
-    if (!cart) throw new Error("Cart not found");
+    if (!cart) throw new Error("سبد خرید یافت نشد");
 
-    // Check if cart has item
+    // بررسی وجود آیتم در سبد
     const exist = (cart.items as CartItem[]).find(
       (x) => x.productId === productId
     );
-    if (!exist) throw new Error("Item not found");
+    if (!exist) throw new Error("آیتم یافت نشد");
 
-    // Check if cart has only one item
+    // بررسی تک‌آیتمی بودن سبد
     if (exist.qty === 1) {
-      // Remove item from cart
+      // حذف آیتم از سبد
       cart.items = (cart.items as CartItem[]).filter(
         (x) => x.productId !== exist.productId
       );
     } else {
-      // Decrease quantity of existing item
+      // کاهش تعداد آیتم موجود
       (cart.items as CartItem[]).find((x) => x.productId === productId)!.qty =
         exist.qty - 1;
     }
 
-    // Update cart in database
+    // بروزرسانی سبد در پایگاه داده
     await prisma.cart.update({
       where: { id: cart.id },
       data: {
@@ -198,16 +198,16 @@ export async function removeItemFromCart(productId: string) {
       },
     });
 
-    // Revalidate product page
+    // بازاعتبارسنجی صفحه محصول
     revalidatePath(`/product/${product.slug}`);
 
     return {
       success: true,
-      message: `${product.name}  ${
+      message: `${product.name} با موفقیت ${
         (cart.items as CartItem[]).find((x) => x.productId === productId)
-          ? "updated in"
-          : "removed from"
-      } cart successfully`,
+          ? "در سبد خرید بروزرسانی شد"
+          : "از سبد خرید حذف شد"
+      }`,
     };
   } catch (error) {
     return { success: false, message: formatError(error) };

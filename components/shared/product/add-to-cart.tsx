@@ -32,9 +32,10 @@ const AddToCart = ({
 
       toast.success((t) => (
         <div>
-          <span>{`${item.name} added to the cart`}</span>
+          <span>{`${item.name} به سبد خرید اضافه شد`}</span>
           <div className="text-center">
-            <Button size="sm" onClick={() => toast.dismiss(t.id)}>
+            {/* <Button size="sm" onClick={() => toast.dismiss(t.id)}> */}
+            <Button size="sm" onClick={() => router.push("/cart")}>
               سبد خرید
             </Button>
           </div>
