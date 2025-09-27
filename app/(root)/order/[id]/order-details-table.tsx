@@ -24,7 +24,7 @@ import {
   approvePayPalOrder,
   createPayPalOrder,
   deliverOrder,
-  startOrder,
+  startOrderZarrinPal,
   updateOrderToPaidByCOD,
 } from "@/lib/actions/order.actions";
 import { useTransition } from "react";
@@ -126,9 +126,9 @@ const OrderDetailsTable = ({
 
   const [isPending, startTransition] = useTransition();
 
-  async function handlePay() {
+  async function handlePayZarrinPal() {
     startTransition(async () => {
-      const res = await startOrder();
+      const res = await startOrderZarrinPal();
       if (res.ok && res.url) {
         window.location.href = res.url; // ریدایرکت به درگاه
       } else {
@@ -138,7 +138,7 @@ const OrderDetailsTable = ({
     });
   }
   return (
-    <>
+    <div className="wrapper my-8">
       <h1 className="py-4 text-2xl"> Order {formatId(order.id)}</h1>
 
       <div className="grid md:grid-cols-3 md:gap-5">
@@ -252,7 +252,7 @@ const OrderDetailsTable = ({
               )}
               {isAdmin && isPaid && !isDelivered && <MarkAsDeliveredButton />}
               <button
-                onClick={handlePay}
+                onClick={handlePayZarrinPal}
                 disabled={isPending}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg"
               >
@@ -262,7 +262,7 @@ const OrderDetailsTable = ({
           </Card>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

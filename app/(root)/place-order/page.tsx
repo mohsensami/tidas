@@ -42,7 +42,7 @@ const placeOrderPage = async () => {
   const userAddress = user.address as ShippingAddress;
 
   return (
-    <>
+    <div className="wrapper my-8">
       <CheckoutSteps current={3} />
       <h1 className="py-4 text-2xl">ثبت سفارش</h1>
 
@@ -145,7 +145,7 @@ const placeOrderPage = async () => {
           </Card>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

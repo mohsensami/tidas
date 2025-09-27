@@ -9,7 +9,7 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { CheckCircle2, XCircle } from "lucide-react";
-import { checkOrder } from "@/lib/actions/order.actions";
+import { checkOrderZarrinPal } from "@/lib/actions/order.actions";
 
 export default function CallbackPage() {
   const [result, setResult] = useState<any>(null);
@@ -20,7 +20,7 @@ export default function CallbackPage() {
     const Status = params.get("Status");
 
     if (Authority && Status) {
-      checkOrder(Authority, Status).then((res) => setResult(res));
+      checkOrderZarrinPal(Authority, Status).then((res) => setResult(res));
     }
   }, []);
 

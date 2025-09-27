@@ -426,7 +426,7 @@ export async function deliverOrder(orderId: string) {
   }
 }
 
-export async function startOrder() {
+export async function startOrderZarrinPal() {
   const callback_url = "http://localhost:3000/payment/callback";
   const amount = 1000;
 
@@ -446,7 +446,7 @@ export async function startOrder() {
   return { ok: false, error: response.errors };
 }
 
-export async function checkOrder(Authority: string, Status: string) {
+export async function checkOrderZarrinPal(Authority: string, Status: string) {
   if (Status !== "OK") {
     return { ok: false, error: "پرداخت لغو شد یا ناموفق بود." };
   }

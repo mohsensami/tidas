@@ -19,9 +19,9 @@ const PaymentMethodPage = async () => {
   const user = await getUserById(userId);
 
   return (
-    <>
+    <div className="wrapper my-8">
       <PaymentMethodForm preferredPaymentMethod={user.paymentMethod} />
-    </>
+    </div>
   );
 };
 
