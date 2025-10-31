@@ -38,7 +38,7 @@ export async function signInWithCredentials(
       throw error;
     }
 
-    return { success: false, message: "Invalid nationalCode or password" };
+    return { success: false, message: "نام کاربری یا رمز عبور اشتباه است" };
   }
 }
 

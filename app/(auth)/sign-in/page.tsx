@@ -32,9 +32,9 @@ const SignInPage = async (props: {
   }
   return (
     <div className="items-center flex justify-center h-screen w-full">
-      <Card className="md:w-2/4">
+      <Card className="md:w-1/4">
         <CardHeader className="space-y-4">
-          <Link href="/" className="flex-center">
+          <Link href="/" className="flex-center mt-2">
             <Image
               priority={true}
               src="/images/logo.jpg"

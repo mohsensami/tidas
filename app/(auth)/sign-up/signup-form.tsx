@@ -31,80 +31,86 @@ const SignUpForm = () => {
     <form action={action}>
       <input type="hidden" name="callbackUrl" value={callbackUrl} />
       <div className="space-y-6">
-        <div>
-          <Label className="mb-2 text-sm" htmlFor="name">
-            نام
-          </Label>
-          <Input
-            id="name"
-            name="name"
-            type="text"
-            defaultValue={signUpDefaultValues.name}
-            autoComplete="name"
-          />
+        <div className="flex gap-2">
+          <div className="flex-1">
+            <Label className=" text-sm" htmlFor="name">
+              نام
+            </Label>
+            <Input
+              id="name"
+              name="name"
+              type="text"
+              defaultValue={signUpDefaultValues.name}
+              autoComplete="name"
+            />
+          </div>
+          <div className="flex-1">
+            <Label className=" text-sm" htmlFor="nationalCode">
+              کدملی
+            </Label>
+            <Input
+              id="nationalCode"
+              name="nationalCode"
+              type="text"
+              defaultValue={signUpDefaultValues.nationalCode}
+              autoComplete="name"
+            />
+          </div>
         </div>
-        <div>
-          <Label className="mb-2 text-sm" htmlFor="nationalCode">
-            کدملی
-          </Label>
-          <Input
-            id="nationalCode"
-            name="nationalCode"
-            type="text"
-            defaultValue={signUpDefaultValues.nationalCode}
-            autoComplete="name"
-          />
+        <div className="flex gap-2">
+          <div className="flex-1">
+            <Label className=" text-sm" htmlFor="phoneNumber">
+              تلفن همراه
+            </Label>
+            <Input
+              id="phoneNumber"
+              name="phoneNumber"
+              type="text"
+              defaultValue={signUpDefaultValues.phoneNumber}
+              autoComplete="name"
+            />
+          </div>
+          <div className="flex-1">
+            <Label className=" text-sm" htmlFor="email">
+              ایمیل
+            </Label>
+            <Input
+              id="email"
+              name="email"
+              dir="ltr"
+              type="email"
+              defaultValue={signUpDefaultValues.email}
+              autoComplete="email"
+            />
+          </div>
         </div>
-        <div>
-          <Label className="mb-2 text-sm" htmlFor="phoneNumber">
-            تلفن همراه
-          </Label>
-          <Input
-            id="phoneNumber"
-            name="phoneNumber"
-            type="text"
-            defaultValue={signUpDefaultValues.phoneNumber}
-            autoComplete="name"
-          />
-        </div>
-        <div>
-          <Label className="mb-2 text-sm" htmlFor="email">
-            ایمیل
-          </Label>
-          <Input
-            id="email"
-            name="email"
-            dir="ltr"
-            type="email"
-            defaultValue={signUpDefaultValues.email}
-            autoComplete="email"
-          />
-        </div>
-        <div>
-          <Label className="mb-2 text-sm" htmlFor="password">
-            رمز عبور
-          </Label>
-          <Input
-            id="password"
-            name="password"
-            dir="ltr"
-            type="password"
-            defaultValue={signUpDefaultValues.password}
-            autoComplete="current-password"
-          />
-        </div>
-        <div>
-          <Label className="mb-2 text-sm" htmlFor="confirmPassword">
-            تکرار رمز عبور
-          </Label>
-          <Input
-            id="confirmPassword"
-            name="confirmPassword"
-            dir="ltr"
-            type="password"
-            defaultValue={signUpDefaultValues.confirmPassword}
-            autoComplete="current-password"
-          />
+        <div className="flex gap-2">
+          <div className="flex-1">
+            <Label className=" text-sm" htmlFor="password">
+              رمز عبور
+            </Label>
+            <Input
+              id="password"
+              name="password"
+              dir="ltr"
+              type="password"
+              defaultValue={signUpDefaultValues.password}
+              autoComplete="current-password"
+            />
+          </div>
+          <div className="flex-1">
+            <Label className=" text-sm" htmlFor="confirmPassword">
+              تکرار رمز عبور
+            </Label>
+            <Input
+              id="confirmPassword"
+              name="confirmPassword"
+              dir="ltr"
+              type="password"
+              defaultValue={signUpDefaultValues.confirmPassword}
+              autoComplete="current-password"
+            />
+          </div>
         </div>
         <div>
           <SignUpButton />
