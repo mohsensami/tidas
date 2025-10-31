@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { signUp } from "@/lib/actions/user.actions";
+import { AlertCircle } from "lucide-react";
 
 const SignUpForm = () => {
   const [data, action] = useActionState(signUp, {
@@ -29,6 +30,23 @@ const SignUpForm = () => {
 
   return (
     <form action={action}>
+      {!data.success && (
+        <div className="text-center text-destructive">
+          {Array.isArray(data.message) ? (
+            <ul className="flex flex-col gap-2 mb-2 text-sm leading-relaxed border border-red-100 rounded-lg p-2">
+              {data.message.map((err, index) => (
+                <li key={index} className="flex items-start bg-white/50 ">
+                  <div>
+                    <p className="text-xs">{err.message}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="text-sm">{data.message}</div>
+          )}
+        </div>
+      )}
       <input type="hidden" name="callbackUrl" value={callbackUrl} />
       <div className="space-y-6">
         <div className="flex gap-2">
@@ -115,10 +133,6 @@ const SignUpForm = () => {
         <div>
           <SignUpButton />
         </div>
-
-        {!data.success && (
-          <div className="text-center text-destructive">{data.message}</div>
-        )}
 
         <div className="text-sm text-center text-muted-foreground">
           قبلا ثبت نام کرده اید؟{" "}

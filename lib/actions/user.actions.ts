@@ -79,12 +79,17 @@ export async function signUp(prevState: unknown, formData: FormData) {
 
     return { success: true, message: "ثبت نام با موفقیت انجام شد" };
   } catch (error) {
-    const errorArray = [error];
-    console.log(errorArray);
+    console.log(error);
     if (isRedirectError(error)) {
       throw error;
     }
-    return { success: false, message: formatError(errorArray) };
+
+    // Handle Zod validation errors
+    if (error instanceof z.ZodError) {
+      return { success: false, message: error.issues };
+    }
+
+    return { success: false, message: formatError(error) };
   }
 }
 
