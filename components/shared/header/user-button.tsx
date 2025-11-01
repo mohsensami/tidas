@@ -51,6 +51,11 @@ const UserButton = async () => {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
+            <Link className="w-full" href="/favorites">
+              لیست علاقه مندی ها
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
             <Link className="w-full" href="/user/orders">
               تاریخچه سفارشات
             </Link>

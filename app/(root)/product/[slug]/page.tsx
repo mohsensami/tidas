@@ -10,6 +10,8 @@ import { getMyCart } from "@/lib/actions/cart.actions";
 import { auth } from "@/auth";
 import ReviewList from "./review-list";
 import Rating from "@/components/shared/product/rating";
+import FavoriteButton from "@/components/shared/product/favorite-button";
+import { isProductFavorite } from "@/lib/actions/favorite.actions";
 
 const ProductDetailsPage = async (props: {
   params: Promise<{ slug: string }>;
@@ -26,6 +28,9 @@ const ProductDetailsPage = async (props: {
   const session = await auth();
   const userId = session?.user?.id;
 
+  // بررسی وضعیت علاقه‌مندی محصول
+  const favoriteStatus = await isProductFavorite(product.id);
+
   return (
     <>
       <section className="wrapper">
@@ -39,12 +44,20 @@ const ProductDetailsPage = async (props: {
           {/* Details Column */}
           <div className="col-span-2 p-5">
             <div className="flex flex-col gap-6">
-              <p>
-                {product.brand} {product.category}
-              </p>
-              <h1 className="h3-bold">{product.name}</h1>
-              <Rating value={Number(product.rating)} />
-              <p>{product.numReviews} دیدگاه</p>
+              <div className="flex items-start justify-between">
+                <div className="flex flex-col gap-6 flex-1">
+                  <p>
+                    {product.brand} {product.category}
+                  </p>
+                  <h1 className="h3-bold">{product.name}</h1>
+                  <Rating value={Number(product.rating)} />
+                  <p>{product.numReviews} دیدگاه</p>
+                </div>
+                <FavoriteButton
+                  productId={product.id}
+                  initialIsFavorite={favoriteStatus}
+                />
+              </div>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <ProductPrice
