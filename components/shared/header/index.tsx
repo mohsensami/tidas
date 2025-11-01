@@ -38,7 +38,7 @@ const Header = () => {
           <Search />
         </div>
         <div className="flex justify-center">
-          <CategoriesDrawer />
+          {/* <CategoriesDrawer /> */}
           <Menu />
         </div>
       </div>

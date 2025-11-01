@@ -274,7 +274,7 @@ export default function Footer() {
           <div className="mt-10 border-t border-border pt-6 text-center text-xs text-text-muted mb-5 md:mb-0 pb-5">
             <span>
               تمامی حقوق این وب‌سایت متعلق به{" "}
-              <a href="/" className="text-primary ">
+              <a href="/" className="text-gold font-bold">
                 تیداس گلد
               </a>{" "}
               است.

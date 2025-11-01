@@ -4,6 +4,7 @@ import Header from "../../components/shared/header";
 import ScrollToTop from "@/components/shared/ScrollToTop";
 import ClientLayout from "./layoutClient";
 import GoldTicker from "@/components/GoldTicker";
+import MobileNavBar from "@/components/shared/MobileNavBar";
 
 export default function RootLayout({
   children,
@@ -20,6 +21,7 @@ export default function RootLayout({
       <Footer />
       {/* <ContactFab /> */}
       <ScrollToTop />
+      <MobileNavBar />
     </div>
   );
 }
