@@ -5,10 +5,22 @@ import { Card, CardContent, CardHeader } from "../../ui/card";
 import ProductPrice from "./product-price";
 import { Product } from "../../../types";
 import Rating from "./rating";
+import FavoriteButton from "./favorite-button";
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({
+  product,
+  showFavoriteButton = false,
+}: {
+  product: Product;
+  showFavoriteButton?: boolean;
+}) => {
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="w-full max-w-sm relative">
+      {showFavoriteButton && (
+        <div className="absolute top-2 right-2 z-10">
+          <FavoriteButton productId={product.id} initialIsFavorite={true} />
+        </div>
+      )}
       <CardHeader className="p-0 items-center">
         <Link href={`/product/${product.slug}`}>
           <Image

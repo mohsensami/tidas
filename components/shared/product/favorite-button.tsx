@@ -6,6 +6,7 @@ import { toggleFavorite } from "@/lib/actions/favorite.actions";
 import toast from "react-hot-toast";
 import { useTransition } from "react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const FavoriteButton = ({
   productId,
@@ -16,6 +17,7 @@ const FavoriteButton = ({
 }) => {
   const [isPending, startTransition] = useTransition();
   const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
+  const router = useRouter();
 
   // تابع toggle برای افزودن یا حذف از علاقه‌مندی‌ها
   const handleToggleFavorite = async () => {
@@ -32,6 +34,9 @@ const FavoriteButton = ({
 
       // نمایش پیام موفقیت
       toast.success(res.message);
+
+      // رفرش صفحه برای به‌روزرسانی لیست علاقه‌مندی‌ها
+      router.refresh();
     });
   };
 

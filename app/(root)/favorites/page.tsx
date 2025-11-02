@@ -16,9 +16,9 @@ const FavoritesPage = async () => {
 
   return (
     <div className="wrapper">
-      <h1 className="h3-bold mb-6">علاقه‌مندی‌های من</h1>
+      <h1 className="h4-bold mb-6">علاقه‌مندی‌های من</h1>
       {favorites.length > 0 ? (
-        <ProductList data={favorites} />
+        <ProductList data={favorites} showFavoriteButton={true} />
       ) : (
         <div className="text-center py-10">
           <p className="text-muted-foreground">
