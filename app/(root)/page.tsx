@@ -10,6 +10,8 @@ import IconBoxes from "@/components/icon-boxes";
 import DealCountdown from "@/components/deal-countdown";
 import Hero from "@/components/hero";
 import WhyUs from "@/components/WhyUs";
+import { MainDialog } from "@/components/main-dialog";
+// import Hero2 from "@/components/hero2";
 
 const HomePage = async () => {
   const latestProducts: any = await getLatestProducts();
@@ -23,6 +25,7 @@ const HomePage = async () => {
       </div> */}
 
       <Hero />
+      {/* <Hero2 /> */}
 
       <div className="wrapper">
         <ProductList title="جدیدترین محصولات" data={latestProducts} />
@@ -33,6 +36,7 @@ const HomePage = async () => {
         <DealCountdown targetDate={new Date("2026-12-20T00:00:00")} />
         {/* <IconBoxes /> */}
       </div>
+      <MainDialog />
     </div>
   );
 };
