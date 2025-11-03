@@ -12,10 +12,11 @@ import DealCountdown from "@/components/deal-countdown";
 import WhyUs from "@/components/WhyUs";
 import { MainDialog } from "@/components/main-dialog";
 import Hero2 from "@/components/hero2";
+import CategoriesList from "@/components/categories-list";
 
 const HomePage = async () => {
   const latestProducts: any = await getLatestProducts();
-  const featuredProducts = await getFeaturedProducts();
+  // const featuredProducts = await getFeaturedProducts();
   return (
     <div className="space-y-8">
       {/* <div dir="ltr">
@@ -26,6 +27,9 @@ const HomePage = async () => {
 
       {/* <Hero /> */}
       <Hero2 />
+      <div className="wrapper">
+        <CategoriesList />
+      </div>
 
       <div className="wrapper">
         <ProductList title="جدیدترین محصولات" data={latestProducts} />
