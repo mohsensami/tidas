@@ -8,10 +8,10 @@ import {
 import ViewAllProductsButton from "@/components/view-all-products-button";
 import IconBoxes from "@/components/icon-boxes";
 import DealCountdown from "@/components/deal-countdown";
-import Hero from "@/components/hero";
+// import Hero from "@/components/hero";
 import WhyUs from "@/components/WhyUs";
 import { MainDialog } from "@/components/main-dialog";
-// import Hero2 from "@/components/hero2";
+import Hero2 from "@/components/hero2";
 
 const HomePage = async () => {
   const latestProducts: any = await getLatestProducts();
@@ -24,8 +24,8 @@ const HomePage = async () => {
         )}
       </div> */}
 
-      <Hero />
-      {/* <Hero2 /> */}
+      {/* <Hero /> */}
+      <Hero2 />
 
       <div className="wrapper">
         <ProductList title="جدیدترین محصولات" data={latestProducts} />
