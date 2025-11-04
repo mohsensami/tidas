@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
 import { MoonIcon, SunIcon, SunMoon } from "lucide-react";
+import Link from "next/link";
 
 const ModeToggle = () => {
   const [mounted, setMounted] = useState(false);
