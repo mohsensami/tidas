@@ -13,7 +13,7 @@ import UserButton from "./user-button";
 const Menu = () => {
   return (
     <>
-      <div className="flex justify-end gap-3">
+      <div className="flex justify-end gap-3 ">
         <nav className="md:flex hidden w-full max-w-xs gap-1">
           {/* <ModeToggle /> */}
           <Button asChild variant="ghost">
@@ -24,7 +24,7 @@ const Menu = () => {
           </Button>
           <UserButton />
         </nav>
-        <nav dir="rtl" className="md:hidden">
+        <nav dir="rtl" className="md:hidden ">
           <Sheet>
             <SheetTrigger className="align-middle mr-4">
               <MenuIcon className="cursor-pointer" />
@@ -40,42 +40,23 @@ const Menu = () => {
               </Button>
               <UserButton /> */}
 
-              <div className="mt-8 ">
-                <nav className="flex flex-col gap-2 ">
-                  <Link
-                    className="bg-gray-200 w-100 px-4 py-4 text-sm "
-                    href="/"
-                  >
-                    صفحه نخست
-                  </Link>
-                  <Link
-                    className="bg-gray-200 w-100 px-4 py-4 text-sm "
-                    href="/search"
-                  >
-                    {" "}
-                    محصولات
-                  </Link>
-                  <Link
-                    className="bg-gray-200 w-100 px-4 py-4 text-sm "
-                    href="/about-us"
-                  >
-                    {" "}
-                    درباره ما
-                  </Link>
-                  <Link
-                    className="bg-gray-200 w-100 px-4 py-4 text-sm "
-                    href="/contact-us"
-                  >
-                    {" "}
-                    تماس با ما
-                  </Link>
-                  <Link
-                    className="bg-gray-200 w-100 px-4 py-4 text-sm "
-                    href="/faq"
-                  >
-                    {" "}
-                    سوالات متداول
-                  </Link>
+              <div className="">
+                <nav className="flex flex-col items-center gap-2 w-full overflow-hidden">
+                  <li className="bg-gray-200 w-64 text-center px-4 py-4 text-sm ">
+                    <Link href="/">صفحه نخست</Link>
+                  </li>
+                  <li className="bg-gray-200 w-64 text-center px-4 py-4 text-sm ">
+                    <Link href="/search"> محصولات</Link>
+                  </li>
+                  <li className="bg-gray-200 w-64 text-center px-4 py-4 text-sm ">
+                    <Link href="/about-us"> درباره ما</Link>
+                  </li>
+                  <li className="bg-gray-200 w-64 text-center px-4 py-4 text-sm ">
+                    <Link href="/contact-us"> تماس با ما</Link>
+                  </li>
+                  <li className="bg-gray-200 w-64 text-center px-4 py-4 text-sm ">
+                    <Link href="/faq"> سوالات متداول</Link>
+                  </li>
                 </nav>
               </div>
             </SheetContent>
