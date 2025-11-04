@@ -13,6 +13,7 @@ import WhyUs from "@/components/WhyUs";
 import { MainDialog } from "@/components/main-dialog";
 import Hero2 from "@/components/hero2";
 import CategoriesList from "@/components/categories-list";
+import TwoColumns from "@/components/TwoColumns";
 
 const HomePage = async () => {
   const latestProducts: any = await getLatestProducts();
@@ -35,10 +36,11 @@ const HomePage = async () => {
         <ProductList title="جدیدترین محصولات" data={latestProducts} />
         <ViewAllProductsButton />
       </div>
-      <WhyUs />
+      {/* <WhyUs /> */}
       <div className="wrapper">
-        <DealCountdown targetDate={new Date("2026-12-20T00:00:00")} />
+        {/* <DealCountdown targetDate={new Date("2026-12-20T00:00:00")} /> */}
         {/* <IconBoxes /> */}
+        <TwoColumns />
       </div>
       <MainDialog />
     </div>

@@ -4,7 +4,13 @@ import React from "react";
 function Hero2() {
   return (
     <section>
-      <Image src="/images/slider.jpg" alt="slider" width={1920} height={960} />
+      <Image
+        className="w-full"
+        src="/images/slider.jpg"
+        alt="slider"
+        width={1920}
+        height={960}
+      />
     </section>
     // <section
     //   id="ctl00_ContentPlaceHolder1_SectionBaner"
