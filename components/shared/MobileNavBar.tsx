@@ -50,7 +50,7 @@ export default function MobileNavBar() {
       </Link>
 
       <Link
-        href="/login"
+        href="/sign-in"
         className={clsx(itemCls, isActive("/user") && "opacity-90")}
         aria-label="پنل کاربر"
       >
