@@ -8,12 +8,13 @@ import ModeToggle from "./mode-toggle";
 import Menu from "./menu";
 import CategoriesDrawer from "./categories-drawer";
 import Search from "./search";
+import { MenuLinks } from "./MenuLinks";
 
 const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-dark-blue text-gold text-tidas backdrop-blur border-b border-b-gold">
       <div className="wrapper flex flex-between">
-        <div className="flex-start">
+        <div className="flex-start ">
           <Link href="/" className="flex-start">
             {/* <Image
               priority={true}
@@ -26,13 +27,14 @@ const Header = () => {
               {APP_NAME}
             </span> */}
           </Link>
-          <nav className="md:flex hidden w-full text-xs gap-4">
+          <MenuLinks />
+          {/*<nav className="md:flex hidden w-full text-xs gap-4">
             <Link href="/">صفحه نخست</Link>
             <Link href="/search"> محصولات</Link>
             <Link href="/about-us"> درباره ما</Link>
             <Link href="/contact-us"> تماس با ما</Link>
             <Link href="/faq"> سوالات متداول</Link>
-          </nav>
+          </nav>*/}
         </div>
         <div className="">
           <Search />
