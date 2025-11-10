@@ -36,9 +36,7 @@ const Header = () => {
             <Link href="/faq"> سوالات متداول</Link>
           </nav>*/}
         </div>
-        <div className="">
-          <Search />
-        </div>
+        <div className="">{/* <Search /> */}</div>
         <div className="flex justify-center">
           {/* <CategoriesDrawer /> */}
           <Menu />

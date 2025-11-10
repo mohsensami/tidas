@@ -3,67 +3,31 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Button } from "../../ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../../ui/dropdown-menu";
-import { MoonIcon, SunIcon, SunMoon } from "lucide-react";
-import Link from "next/link";
+import { MoonIcon, SunIcon } from "lucide-react";
 
 const ModeToggle = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+
   useEffect(() => {
     setMounted(true);
   }, []);
-  if (!mounted) {
-    return null;
-  }
+
+  if (!mounted) return null;
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
-    <>
-      <DropdownMenu dir="rtl">
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="focus-visible:ring-0 focus-visible:ring-offset-0"
-          >
-            {theme === "system" ? (
-              <SunMoon />
-            ) : theme === "dark" ? (
-              <MoonIcon />
-            ) : (
-              <SunIcon />
-            )}
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>ظاهر</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuCheckboxItem
-            checked={theme === "system"}
-            onClick={() => setTheme("system")}
-          >
-            سیستم
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem
-            checked={theme === "light"}
-            onClick={() => setTheme("light")}
-          >
-            روشن
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem
-            checked={theme === "dark"}
-            onClick={() => setTheme("dark")}
-          >
-            تاریک
-          </DropdownMenuCheckboxItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </>
+    <Button
+      variant="ghost"
+      className="focus-visible:ring-0 focus-visible:ring-offset-0"
+      onClick={toggleTheme}
+      aria-label="تغییر حالت تم"
+    >
+      {theme === "dark" ? <MoonIcon /> : <SunIcon />}
+    </Button>
   );
 };
 
