@@ -2,8 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react";
-
+import Image from "next/image";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   NavigationMenu,
@@ -14,213 +13,281 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { formatCurrency } from "@/lib/utils";
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "پنجره هشدار (Alert Dialog)",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "یک پنجره گفت‌وگو که برای هشدار یا تأیید اطلاعات مهم استفاده می‌شود.",
-  },
-  {
-    title: "کارت شناور (Hover Card)",
-    href: "/docs/primitives/hover-card",
-    description: "برای پیش‌نمایش محتوایی که پشت یک لینک یا دکمه قرار دارد.",
-  },
-  {
-    title: "نوار پیشرفت (Progress)",
-    href: "/docs/primitives/progress",
-    description:
-      "نمایش میزان پیشرفت یک فرایند یا عملیات، معمولاً به‌صورت نوار پیشرفت.",
-  },
-  {
-    title: "ناحیه پیمایش (Scroll-area)",
-    href: "/docs/primitives/scroll-area",
-    description: "جداسازی بصری یا معنایی بخش‌های مختلف محتوا.",
-  },
-  {
-    title: "زبانه‌ها (Tabs)",
-    href: "/docs/primitives/tabs",
-    description:
-      "مجموعه‌ای از بخش‌های محتوایی که به‌صورت زبانه‌ای نمایش داده می‌شوند.",
-  },
-  {
-    title: "راهنما (Tooltip)",
-    href: "/docs/primitives/tooltip",
-    description:
-      "پنجره کوچکی که هنگام قرار گرفتن ماوس یا فوکوس بر یک عنصر نمایش داده می‌شود.",
-  },
+// دسته‌بندی‌های استاتیک
+const categories = [
+  { category: "النگو", count: 12 },
+  { category: "آویز", count: 8 },
+  { category: "انگشتر", count: 15 },
 ];
+
+// محصولات استاتیک برای هر دسته‌بندی
+const staticProducts: Record<
+  string,
+  Array<{
+    id: string;
+    name: string;
+    slug: string;
+    image: string;
+    price: number;
+    stock: number;
+  }>
+> = {
+  النگو: [
+    {
+      id: "1",
+      name: "النگو طلا طرح کلاسیک",
+      slug: "alangoo-tala-classic",
+      image: "/images/sample-products/p1-1.jpg",
+      price: 5000000,
+      stock: 10,
+    },
+    {
+      id: "2",
+      name: "النگو نقره با نگین",
+      slug: "alangoo-noqre-ngin",
+      image: "/images/sample-products/p2-1.jpg",
+      price: 3000000,
+      stock: 5,
+    },
+    {
+      id: "3",
+      name: "النگو طلا ساده",
+      slug: "alangoo-tala-sade",
+      image: "/images/sample-products/p3-1.jpg",
+      price: 4500000,
+      stock: 8,
+    },
+    {
+      id: "4",
+      name: "النگو طلا طرح مدرن",
+      slug: "alangoo-tala-modern",
+      image: "/images/sample-products/p4-1.jpg",
+      price: 5500000,
+      stock: 12,
+    },
+    {
+      id: "5",
+      name: "النگو طلا با الماس",
+      slug: "alangoo-tala-diamond",
+      image: "/images/sample-products/p5-1.jpg",
+      price: 8000000,
+      stock: 3,
+    },
+    {
+      id: "6",
+      name: "النگو نقره دست‌ساز",
+      slug: "alangoo-noqre-handmade",
+      image: "/images/sample-products/p6-1.jpg",
+      price: 2500000,
+      stock: 15,
+    },
+  ],
+  آویز: [
+    {
+      id: "7",
+      name: "آویز طلا قلب",
+      slug: "aviz-tala-heart",
+      image: "/images/sample-products/p1-1.jpg",
+      price: 3500000,
+      stock: 10,
+    },
+    {
+      id: "8",
+      name: "آویز نقره ستاره",
+      slug: "aviz-noqre-star",
+      image: "/images/sample-products/p2-1.jpg",
+      price: 2000000,
+      stock: 7,
+    },
+    {
+      id: "9",
+      name: "آویز طلا گل",
+      slug: "aviz-tala-flower",
+      image: "/images/sample-products/p3-1.jpg",
+      price: 4000000,
+      stock: 5,
+    },
+    {
+      id: "10",
+      name: "آویز طلا با نگین",
+      slug: "aviz-tala-ngin",
+      image: "/images/sample-products/p4-1.jpg",
+      price: 4500000,
+      stock: 8,
+    },
+    {
+      id: "11",
+      name: "آویز نقره ماه",
+      slug: "aviz-noqre-moon",
+      image: "/images/sample-products/p5-1.jpg",
+      price: 1800000,
+      stock: 12,
+    },
+    {
+      id: "12",
+      name: "آویز طلا الماس",
+      slug: "aviz-tala-diamond",
+      image: "/images/sample-products/p6-1.jpg",
+      price: 6000000,
+      stock: 4,
+    },
+  ],
+  انگشتر: [
+    {
+      id: "13",
+      name: "انگشتر طلا ساده",
+      slug: "angoshtar-tala-sade",
+      image: "/images/sample-products/p1-1.jpg",
+      price: 6000000,
+      stock: 10,
+    },
+    {
+      id: "14",
+      name: "انگشتر نقره با نگین",
+      slug: "angoshtar-noqre-ngin",
+      image: "/images/sample-products/p2-1.jpg",
+      price: 3500000,
+      stock: 8,
+    },
+    {
+      id: "15",
+      name: "انگشتر طلا الماس",
+      slug: "angoshtar-tala-diamond",
+      image: "/images/sample-products/p3-1.jpg",
+      price: 12000000,
+      stock: 3,
+    },
+    {
+      id: "16",
+      name: "انگشتر طلا طرح کلاسیک",
+      slug: "angoshtar-tala-classic",
+      image: "/images/sample-products/p4-1.jpg",
+      price: 7000000,
+      stock: 6,
+    },
+    {
+      id: "17",
+      name: "انگشتر نقره ساده",
+      slug: "angoshtar-noqre-sade",
+      image: "/images/sample-products/p5-1.jpg",
+      price: 2800000,
+      stock: 15,
+    },
+    {
+      id: "18",
+      name: "انگشتر طلا مدرن",
+      slug: "angoshtar-tala-modern",
+      image: "/images/sample-products/p6-1.jpg",
+      price: 6500000,
+      stock: 9,
+    },
+  ],
+};
 
 export function MenuLinks() {
   const isMobile = useIsMobile();
+  const [hoveredCategory, setHoveredCategory] = React.useState<string | null>(
+    null
+  );
+
+  const products = hoveredCategory ? staticProducts[hoveredCategory] || [] : [];
 
   return (
     <NavigationMenu className="hidden md:block" viewport={isMobile}>
       <NavigationMenuList className="flex-wrap justify-end">
-        {/* صفحه اصلی */}
+        {/* محصولات */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger>صفحه اصلی</NavigationMenuTrigger>
+          <NavigationMenuTrigger>محصولات</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] ">
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
+            <div className="grid gap-4 p-6 md:w-[700px] lg:w-[900px] lg:grid-cols-[250px_1fr]">
+              {/* لیست دسته‌بندی‌ها */}
+              <div className="space-y-1 border-l lg:pr-4">
+                {categories.map((cat) => (
                   <Link
-                    className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden transition-all duration-200 select-none focus:shadow-md md:p-6"
-                    href="/"
+                    key={cat.category}
+                    href={`/search?category=${encodeURIComponent(cat.category)}`}
+                    onMouseEnter={() => setHoveredCategory(cat.category)}
+                    className={`block rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground ${
+                      hoveredCategory === cat.category
+                        ? "bg-accent font-medium"
+                        : ""
+                    }`}
                   >
-                    <div className="mb-2 text-lg font-medium sm:mt-4">
-                      رابط کاربری Shadcn
+                    <div className="font-medium">{cat.category}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {cat.count} محصول
                     </div>
-                    <p className="text-muted-foreground text-sm leading-tight">
-                      مجموعه‌ای از کامپوننت‌های زیبا و کاربردی با Tailwind CSS.
-                    </p>
                   </Link>
-                </NavigationMenuLink>
-              </li>
-              <ListItem href="/docs" title="مقدمه">
-                معرفی اجزاء و ساختار کلی رابط کاربری.
-              </ListItem>
-              <ListItem href="/docs/installation" title="نصب و راه‌اندازی">
-                آموزش نصب وابستگی‌ها و ساختاردهی پروژه شما.
-              </ListItem>
-              <ListItem href="/docs/primitives/typography" title="تایپوگرافی">
-                استایل‌ها و استانداردهای نوشتاری در پروژه.
-              </ListItem>
-            </ul>
+                ))}
+              </div>
+
+              {/* نمایش محصولات */}
+              <div className="lg:pl-4">
+                {hoveredCategory ? (
+                  <div>
+                    <h3 className="mb-4 text-lg font-semibold">
+                      محصولات {hoveredCategory}
+                    </h3>
+                    {products.length > 0 ? (
+                      <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+                        {products.map((product) => (
+                          <Link
+                            key={product.id}
+                            href={`/product/${product.slug}`}
+                            className="group space-y-2 rounded-lg border p-3 transition-colors hover:bg-accent"
+                          >
+                            <div className="relative aspect-square overflow-hidden rounded-md bg-muted">
+                              <Image
+                                src={product.image || "/images/logo.jpg"}
+                                alt={product.name}
+                                fill
+                                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                                className="object-cover transition-transform group-hover:scale-105"
+                              />
+                            </div>
+                            <div className="space-y-1">
+                              <h4 className="line-clamp-2 text-sm font-medium">
+                                {product.name}
+                              </h4>
+                              <div className="text-sm font-semibold text-primary">
+                                {formatCurrency(product.price.toFixed(0))} تومان
+                              </div>
+                              {product.stock === 0 && (
+                                <div className="text-xs text-destructive">
+                                  موجود نیست
+                                </div>
+                              )}
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="py-8 text-center text-sm text-muted-foreground">
+                        محصولی در این دسته‌بندی یافت نشد
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex h-full items-center justify-center py-8">
+                    <p className="text-sm text-muted-foreground">
+                      روی یک دسته‌بندی هاور کنید تا محصولات را ببینید
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        {/* کامپوننت‌ها */}
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>اجزاء</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid gap-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        {/* مستندات */}
+        {/* صفحه نخست */}
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/docs">مستندات</Link>
+            <Link href="/">صفحه نخست</Link>
           </NavigationMenuLink>
-        </NavigationMenuItem>
-
-        {/* لیست */}
-        <NavigationMenuItem className="hidden md:block">
-          <NavigationMenuTrigger>لیست</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[300px] gap-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link href="#">
-                    <div className="font-medium">اجزاء</div>
-                    <div className="text-muted-foreground">
-                      مشاهده تمام کامپوننت‌های موجود در کتابخانه.
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link href="#">
-                    <div className="font-medium">مستندات</div>
-                    <div className="text-muted-foreground">
-                      آموزش استفاده و تنظیمات هر بخش.
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link href="#">
-                    <div className="font-medium">وبلاگ</div>
-                    <div className="text-muted-foreground">
-                      مطالعه آخرین مقالات و بروزرسانی‌ها.
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        {/* ساده */}
-        <NavigationMenuItem className="hidden md:block">
-          <NavigationMenuTrigger>ساده</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[200px] gap-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link href="#">اجزاء</Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link href="#">مستندات</Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link href="#">بلوک‌ها</Link>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        {/* آیکون‌دار */}
-        <NavigationMenuItem className="hidden md:block">
-          <NavigationMenuTrigger>دارای آیکون</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[200px] gap-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link href="#" className="flex-row items-center gap-2">
-                    <CircleHelpIcon />
-                    در انتظار
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link href="#" className="flex-row items-center gap-2">
-                    <CircleIcon />
-                    در حال انجام
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link href="#" className="flex-row items-center gap-2">
-                    <CircleCheckIcon />
-                    انجام‌شده
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
-  );
-}
-
-// کامپوننت آیتم لیست
-function ListItem({
-  title,
-  children,
-  href,
-  ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
-  return (
-    <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link href={href} className="block text-right">
-          <div className="text-sm leading-none font-medium mb-1">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
   );
 }
