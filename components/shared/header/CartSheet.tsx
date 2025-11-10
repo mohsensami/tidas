@@ -9,26 +9,23 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Loader } from "lucide-react";
+import { ShoppingCart, Loader, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { getMyCart } from "@/lib/actions/cart.actions";
+import { useState, useEffect, useTransition, useCallback } from "react";
+import { getMyCart, deleteItemFromCart } from "@/lib/actions/cart.actions";
 import { Cart } from "@/types";
 import { formatCurrency } from "@/lib/utils";
+import toast from "react-hot-toast";
 
 const CartSheet = () => {
   const [cart, setCart] = useState<Cart | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const [deletingItemId, setDeletingItemId] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (isOpen) {
-      fetchCart();
-    }
-  }, [isOpen]);
-
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     setIsLoading(true);
     try {
       const cartData = await getMyCart();
@@ -38,6 +35,33 @@ const CartSheet = () => {
     } finally {
       setIsLoading(false);
     }
+  }, []);
+
+  // دریافت سبد خرید هنگام باز شدن Sheet
+  useEffect(() => {
+    if (isOpen) {
+      fetchCart();
+    }
+  }, [isOpen, fetchCart]);
+
+  // دریافت سبد خرید در mount برای نمایش badge صحیح
+  useEffect(() => {
+    fetchCart();
+  }, [fetchCart]);
+
+  const handleDeleteItem = (productId: string) => {
+    setDeletingItemId(productId);
+    startTransition(async () => {
+      const res = await deleteItemFromCart(productId);
+      if (res.success) {
+        toast.success(res.message);
+        // بروزرسانی سبد خرید
+        await fetchCart();
+      } else {
+        toast.error(res.message);
+      }
+      setDeletingItemId(null);
+    });
   };
 
   const items = cart?.items || [];
@@ -80,11 +104,11 @@ const CartSheet = () => {
             items.map((item) => (
               <div
                 key={item.productId}
-                className="flex items-center justify-between border-b pb-3"
+                className="flex items-center justify-between border-b pb-3 gap-2"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 flex-1 min-w-0">
                   <Link href={`/product/${item.slug}`}>
-                    <div className="relative w-16 h-16 rounded-md overflow-hidden border">
+                    <div className="relative w-16 h-16 rounded-md overflow-hidden border flex-shrink-0">
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -93,21 +117,37 @@ const CartSheet = () => {
                       />
                     </div>
                   </Link>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col min-w-0 flex-1">
                     <Link href={`/product/${item.slug}`}>
-                      <p className="text-sm font-medium text-right hover:text-primary">
+                      <p className="text-sm font-medium text-right hover:text-primary truncate">
                         {item.name}
                       </p>
                     </Link>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-500 text-right">
                       {item.qty} × {formatCurrency(item.price)} تومان
                     </p>
                   </div>
                 </div>
-                <p className="font-semibold text-sm">
-                  {formatCurrency((Number(item.price) * item.qty).toFixed(2))}{" "}
-                  تومان
-                </p>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <p className="font-semibold text-sm whitespace-nowrap">
+                    {formatCurrency((Number(item.price) * item.qty).toFixed(2))}{" "}
+                    تومان
+                  </p>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 text-red-500 hover:text-red-700 hover:bg-red-50"
+                    onClick={() => handleDeleteItem(item.productId)}
+                    disabled={isPending || deletingItemId === item.productId}
+                    title="حذف از سبد خرید"
+                  >
+                    {deletingItemId === item.productId ? (
+                      <Loader className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Trash2 className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
               </div>
             ))
           )}

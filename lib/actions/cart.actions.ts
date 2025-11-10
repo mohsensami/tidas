@@ -213,3 +213,53 @@ export async function removeItemFromCart(productId: string) {
     return { success: false, message: formatError(error) };
   }
 }
+
+// حذف کامل آیتم از سبد خرید (بدون توجه به تعداد)
+export async function deleteItemFromCart(productId: string) {
+  try {
+    // گرفتن آی‌دی سبد خرید سشن
+    const sessionCartId = (await cookies()).get("sessionCartId")?.value;
+    if (!sessionCartId) throw new Error("سبد خرید سشن یافت نشد");
+
+    // گرفتن محصول
+    const product = await prisma.product.findFirst({
+      where: { id: productId },
+    });
+    if (!product) throw new Error("محصول یافت نشد");
+
+    // گرفتن سبد خرید کاربر
+    const cart = await getMyCart();
+    if (!cart) throw new Error("سبد خرید یافت نشد");
+
+    // بررسی وجود آیتم در سبد
+    const exist = (cart.items as CartItem[]).find(
+      (x) => x.productId === productId
+    );
+    if (!exist) throw new Error("آیتم یافت نشد");
+
+    // حذف کامل آیتم از سبد
+    cart.items = (cart.items as CartItem[]).filter(
+      (x) => x.productId !== productId
+    );
+
+    // بروزرسانی سبد در پایگاه داده
+    await prisma.cart.update({
+      where: { id: cart.id },
+      data: {
+        items: cart.items as Prisma.CartUpdateitemsInput[],
+        ...calcPrice(cart.items as CartItem[]),
+      },
+    });
+
+    // بازاعتبارسنجی صفحه محصول و سبد خرید
+    revalidatePath(`/product/${product.slug}`);
+    revalidatePath("/cart");
+
+    return {
+      success: true,
+      message: `${product.name} با موفقیت از سبد خرید حذف شد`,
+    };
+  } catch (error) {
+    return { success: false, message: formatError(error) };
+  }
+}
