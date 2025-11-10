@@ -9,36 +9,42 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-
-// نمونه داده – در پروژه واقعی از context یا state global بگیرش
-const sampleCartItems = [
-  {
-    id: 1,
-    title: "کفش ورزشی نایک مدل Air Zoom",
-    price: 3200000,
-    image: "/images/shoes1.jpg",
-    qty: 1,
-  },
-  {
-    id: 2,
-    title: "هدفون بلوتوث سونی WH-1000XM5",
-    price: 8900000,
-    image: "/images/headphone.jpg",
-    qty: 2,
-  },
-];
+import { useState, useEffect } from "react";
+import { getMyCart } from "@/lib/actions/cart.actions";
+import { Cart } from "@/types";
+import { formatCurrency } from "@/lib/utils";
 
 const CartSheet = () => {
-  const [items, setItems] = useState(sampleCartItems);
+  const [cart, setCart] = useState<Cart | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
+  useEffect(() => {
+    if (isOpen) {
+      fetchCart();
+    }
+  }, [isOpen]);
+
+  const fetchCart = async () => {
+    setIsLoading(true);
+    try {
+      const cartData = await getMyCart();
+      setCart(cartData);
+    } catch (error) {
+      console.error("Error fetching cart:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const items = cart?.items || [];
+  const total = cart?.itemsPrice || "0";
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" className="relative">
           <ShoppingCart className="h-5 w-5" />
@@ -62,36 +68,45 @@ const CartSheet = () => {
 
         {/* لیست محصولات */}
         <div className="flex-1 overflow-y-auto mt-4 space-y-4">
-          {items.length === 0 ? (
+          {isLoading ? (
+            <div className="flex items-center justify-center mt-10">
+              <Loader className="w-6 h-6 animate-spin text-gray-500" />
+            </div>
+          ) : items.length === 0 ? (
             <p className="text-center text-gray-500 mt-10">
               سبد خرید شما خالی است 🛒
             </p>
           ) : (
             items.map((item) => (
               <div
-                key={item.id}
+                key={item.productId}
                 className="flex items-center justify-between border-b pb-3"
               >
                 <div className="flex items-center gap-3">
-                  <div className="relative w-16 h-16 rounded-md overflow-hidden border">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                  <Link href={`/product/${item.slug}`}>
+                    <div className="relative w-16 h-16 rounded-md overflow-hidden border">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </Link>
                   <div className="flex flex-col">
-                    <p className="text-sm font-medium text-right">
-                      {item.title}
-                    </p>
+                    <Link href={`/product/${item.slug}`}>
+                      <p className="text-sm font-medium text-right hover:text-primary">
+                        {item.name}
+                      </p>
+                    </Link>
                     <p className="text-xs text-gray-500">
-                      {item.qty} × {item.price.toLocaleString("fa-IR")} تومان
+                      {item.qty} × {formatCurrency(item.price)} تومان
                     </p>
                   </div>
                 </div>
                 <p className="font-semibold text-sm">
-                  {(item.price * item.qty).toLocaleString("fa-IR")} تومان
+                  {formatCurrency((Number(item.price) * item.qty).toFixed(2))}{" "}
+                  تومان
                 </p>
               </div>
             ))
@@ -99,18 +114,22 @@ const CartSheet = () => {
         </div>
 
         {/* فوتر */}
-        <SheetFooter className="flex flex-col gap-3 mt-6 border-t pt-3">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600">جمع کل:</span>
-            <span className="font-bold">
-              {total.toLocaleString("fa-IR")} تومان
-            </span>
-          </div>
+        {!isLoading && items.length > 0 && (
+          <SheetFooter className="flex flex-col gap-3 mt-6 border-t pt-3">
+            <div className="flex items-center justify-between w-full">
+              <span className="text-sm text-gray-600">جمع کل:</span>
+              <span className="font-bold">{formatCurrency(total)} تومان</span>
+            </div>
 
-          <Link href="/cart" className="w-full">
-            <Button className="w-full">مشاهده سبد خرید</Button>
-          </Link>
-        </SheetFooter>
+            <Link
+              href="/cart"
+              className="w-full"
+              onClick={() => setIsOpen(false)}
+            >
+              <Button className="w-full">مشاهده سبد خرید</Button>
+            </Link>
+          </SheetFooter>
+        )}
       </SheetContent>
     </Sheet>
   );
