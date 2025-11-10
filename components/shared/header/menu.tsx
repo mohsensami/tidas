@@ -9,6 +9,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../../ui/sheet";
 import Link from "next/link";
 import ModeToggle from "./mode-toggle";
 import UserButton from "./user-button";
+import CartSheet from "./CartSheet";
 
 const Menu = () => {
   return (
@@ -24,6 +25,7 @@ const Menu = () => {
           </Button>
           <UserButton />
         </nav>
+        <CartSheet />
         <nav dir="rtl" className="md:hidden ">
           <Sheet>
             <SheetTrigger className="align-middle mr-4">
