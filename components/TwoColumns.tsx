@@ -5,7 +5,13 @@ const TwoColumns = () => {
   return (
     <div className="mb-8 grid md:grid-cols-2 gap-8 items-center">
       <div>
-        <Image alt="about" src="/images/about.webp" width={500} height={500} />
+        <Image
+          className="rounded-sm"
+          alt="about"
+          src="/images/about.webp"
+          width={500}
+          height={500}
+        />
       </div>
       <div>
         <h2 className="text-xl font-bold mb-4">درباره گالری طلای تیداس</h2>
