@@ -191,3 +191,18 @@ export async function getFeaturedProducts() {
 
   return convertToPlainObject(data);
 }
+
+// Get related products by category
+export async function getRelatedProducts(productId: string, category: string, limit: number = 4) {
+  const data = await prisma.product.findMany({
+    where: {
+      category: category,
+      id: { not: productId },
+      stock: { gt: 0 },
+    },
+    orderBy: { createdAt: "desc" },
+    take: limit,
+  });
+
+  return convertToPlainObject(data);
+}
