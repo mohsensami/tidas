@@ -5,11 +5,10 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
   SheetFooter,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Loader, Trash2 } from "lucide-react";
+import { Loader, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useTransition, useCallback } from "react";
@@ -17,11 +16,12 @@ import { getMyCart, deleteItemFromCart } from "@/lib/actions/cart.actions";
 import { Cart } from "@/types";
 import { formatCurrency } from "@/lib/utils";
 import toast from "react-hot-toast";
+import { useCartSheet } from "@/components/shared/header/cart-sheet-context";
 
 const CartSheet = () => {
+  const { isOpen, closeCartSheet } = useCartSheet();
   const [cart, setCart] = useState<Cart | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const [deletingItemId, setDeletingItemId] = useState<string | null>(null);
 
@@ -68,18 +68,7 @@ const CartSheet = () => {
   const total = cart?.itemsPrice || "0";
 
   return (
-    <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger asChild>
-        <Button variant="ghost" className="relative">
-          <ShoppingCart className="h-5 w-5" />
-          {items.length > 0 && (
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
-              {items.length}
-            </span>
-          )}
-        </Button>
-      </SheetTrigger>
-
+    <Sheet open={isOpen} onOpenChange={(open) => !open && closeCartSheet()}>
       <SheetContent
         side="right"
         className="w-[400px] sm:w-[480px] p-4 flex flex-col"
@@ -164,7 +153,7 @@ const CartSheet = () => {
             <Link
               href="/cart"
               className="w-full"
-              onClick={() => setIsOpen(false)}
+              onClick={() => closeCartSheet()}
             >
               <Button className="w-full">مشاهده سبد خرید</Button>
             </Link>
