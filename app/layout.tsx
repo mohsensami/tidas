@@ -6,6 +6,7 @@ import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from "../lib/constants";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
+import { CartSheetProvider } from "@/components/shared/header/cart-sheet-context";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -28,8 +29,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  cart,
 }: Readonly<{
   children: React.ReactNode;
+  cart: React.ReactNode;
 }>) {
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
@@ -37,15 +40,18 @@ export default function RootLayout({
 
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Toaster />
-          {children}
-        </ThemeProvider>
+        <CartSheetProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Toaster />
+            {children}
+            {cart}
+          </ThemeProvider>
+        </CartSheetProvider>
       </body>
       <Script id="goftino-widget" strategy="afterInteractive">
         {`

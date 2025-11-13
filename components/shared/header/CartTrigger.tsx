@@ -27,7 +27,11 @@ const CartTrigger = () => {
   const items = cart?.items || [];
 
   return (
-    <Button variant="ghost" className="relative" onClick={openCartSheet}>
+    <Button
+      variant="ghost"
+      className="relative"
+      onClick={openCartSheet}
+    >
       <ShoppingCart className="h-5 w-5" />
       {items.length > 0 && (
         <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
@@ -39,3 +43,4 @@ const CartTrigger = () => {
 };
 
 export default CartTrigger;
+
