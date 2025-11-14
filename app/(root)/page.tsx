@@ -14,6 +14,7 @@ import { MainDialog } from "@/components/main-dialog";
 import Hero2 from "@/components/hero2";
 import CategoriesList from "@/components/categories-list";
 import TwoColumns from "@/components/TwoColumns";
+import FAQ from "@/components/faq";
 
 const HomePage = async () => {
   const latestProducts: any = await getLatestProducts();
@@ -42,6 +43,7 @@ const HomePage = async () => {
         {/* <IconBoxes /> */}
         <TwoColumns />
       </div>
+      <FAQ />
       <MainDialog />
     </div>
   );
