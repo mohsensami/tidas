@@ -197,6 +197,13 @@ export function MenuLinks() {
   return (
     <NavigationMenu className="hidden md:block" viewport={isMobile}>
       <NavigationMenuList className="flex-wrap justify-end">
+        {/* تماس با ما  */}
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link href="/contact-us">تماس با ما</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+
         {/* محصولات */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>محصولات</NavigationMenuTrigger>
