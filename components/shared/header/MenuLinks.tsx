@@ -204,6 +204,20 @@ export function MenuLinks() {
           </NavigationMenuLink>
         </NavigationMenuItem>
 
+        {/* سوالات متداول  */}
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link href="/faq">سوالات متداول</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+
+        {/* درباره ما  */}
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link href="/about-us">درباره ما</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+
         {/* محصولات */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>محصولات</NavigationMenuTrigger>
