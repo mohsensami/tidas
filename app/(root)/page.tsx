@@ -44,7 +44,7 @@ const HomePage = async () => {
         <TwoColumns />
       </div>
       <FAQ />
-      <MainDialog />
+      {/* <MainDialog /> */}
     </div>
   );
 };
