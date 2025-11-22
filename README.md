@@ -137,7 +137,7 @@ Ensure that all `.env` variables are added to your **Vercel Project Settings**.
 
 **Mohsen Sami**  
 Crafted with 💛 using modern web technologies.  
-📍 [www.tidasgold.ir](http://tidasgold.ir)
+📍 [www.tidasgold.ir](https://tidasgold.ir)
 
 ---
 
