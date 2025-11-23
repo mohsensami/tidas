@@ -36,18 +36,18 @@ export default function MobileNavBar() {
         <Heart size={24} />
       </Link>
 
-      <Link
+      {/* <Link
         href="/cart"
         className={clsx(itemCls, isActive("/cart") && "opacity-90")}
         aria-label="سبد خرید"
       >
         <ShoppingBag size={24} />
-        {/* {totalQty > 0 && (
+        {totalQty > 0 && (
           <span className="absolute -top-1 -right-2 rounded-full bg-black text-white text-xs px-1.5 py-0.5">
             {totalQty}
           </span>
-        )} */}
-      </Link>
+        )}
+      </Link> */}
 
       <Link
         href="/sign-in"
