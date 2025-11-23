@@ -27,6 +27,7 @@ import { Textarea } from "../ui/textarea";
 import toast from "react-hot-toast";
 import { UploadButton } from "@/lib/uploadthing";
 import { Checkbox } from "../ui/checkbox";
+import { XIcon } from "lucide-react";
 
 const ProductForm = ({
   type,
@@ -80,6 +81,17 @@ const ProductForm = ({
   const images = form.watch("images");
   const isFeatured = form.watch("isFeatured");
   const banner = form.watch("banner");
+
+  // Function to remove an image
+  const removeImage = (imageToRemove: string) => {
+    const updatedImages = images.filter((img: string) => img !== imageToRemove);
+    form.setValue("images", updatedImages);
+  };
+
+  // Function to remove banner
+  const removeBanner = () => {
+    form.setValue("banner", "");
+  };
 
   return (
     <Form {...form}>
@@ -253,16 +265,26 @@ const ProductForm = ({
                 <FormLabel>Images</FormLabel>
                 <Card>
                   <CardContent className="space-y-2 mt-2 min-h-48">
-                    <div className="flex-start space-x-2">
+                    <div className="flex-start flex-wrap gap-2">
                       {images.map((image: string) => (
-                        <Image
-                          key={image}
-                          src={image}
-                          alt="product image"
-                          className="w-20 h-20 object-cover object-center rounded-sm"
-                          width={100}
-                          height={100}
-                        />
+                        <div key={image} className="relative group">
+                          <Image
+                            src={image}
+                            alt="product image"
+                            className="w-20 h-20 object-cover object-center rounded-sm"
+                            width={100}
+                            height={100}
+                          />
+                          <Button
+                            type="button"
+                            variant="destructive"
+                            size="icon"
+                            className="absolute -top-2 -right-2 h-6 w-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                            onClick={() => removeImage(image)}
+                          >
+                            <XIcon className="h-4 w-4" />
+                          </Button>
+                        </div>
                       ))}
                       <FormControl>
                         <UploadButton
@@ -303,13 +325,24 @@ const ProductForm = ({
                 )}
               />
               {isFeatured && banner && (
-                <Image
-                  src={banner}
-                  alt="banner image"
-                  className=" w-full object-cover object-center rounded-sm"
-                  width={1920}
-                  height={680}
-                />
+                <div className="relative group">
+                  <Image
+                    src={banner}
+                    alt="banner image"
+                    className=" w-full object-cover object-center rounded-sm"
+                    width={1920}
+                    height={680}
+                  />
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="icon"
+                    className="absolute top-2 right-2 h-8 w-8 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    onClick={removeBanner}
+                  >
+                    <XIcon className="h-4 w-4" />
+                  </Button>
+                </div>
               )}
               {isFeatured && !banner && (
                 <UploadButton
