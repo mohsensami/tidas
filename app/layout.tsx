@@ -53,7 +53,7 @@ export default function RootLayout({
           </ThemeProvider>
         </CartSheetProvider>
       </body>
-      <Script id="goftino-widget" strategy="afterInteractive">
+      {/* <Script id="goftino-widget" strategy="afterInteractive">
         {`
           !function(){
             var i="upytyh",a=window,d=document;
@@ -68,7 +68,7 @@ export default function RootLayout({
             "complete"===d.readyState ? g() : a.attachEvent ? a.attachEvent("onload",g) : a.addEventListener("load",g,!1);
           }();
         `}
-      </Script>
+      </Script> */}
     </html>
   );
 }

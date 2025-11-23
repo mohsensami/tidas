@@ -83,14 +83,67 @@ const ProductForm = ({
   const banner = form.watch("banner");
 
   // Function to remove an image
-  const removeImage = (imageToRemove: string) => {
-    const updatedImages = images.filter((img: string) => img !== imageToRemove);
-    form.setValue("images", updatedImages);
+  const removeImage = async (imageToRemove: string) => {
+    try {
+      // Delete from UploadThing
+      const response = await fetch("/api/uploadthing/delete", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fileUrl: imageToRemove }),
+      });
+
+      const result = await response.json();
+
+      if (!result.success) {
+        toast.error("خطا در حذف فایل از سرور");
+      }
+
+      // Remove from form
+      const updatedImages = images.filter(
+        (img: string) => img !== imageToRemove
+      );
+      form.setValue("images", updatedImages);
+    } catch (error) {
+      console.error("Error deleting image:", error);
+      toast.error("خطا در حذف تصویر");
+      // Still remove from form even if server deletion fails
+      const updatedImages = images.filter(
+        (img: string) => img !== imageToRemove
+      );
+      form.setValue("images", updatedImages);
+    }
   };
 
   // Function to remove banner
-  const removeBanner = () => {
-    form.setValue("banner", "");
+  const removeBanner = async () => {
+    if (!banner) return;
+
+    try {
+      // Delete from UploadThing
+      const response = await fetch("/api/uploadthing/delete", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fileUrl: banner }),
+      });
+
+      const result = await response.json();
+
+      if (!result.success) {
+        toast.error("خطا در حذف فایل از سرور");
+      }
+
+      // Remove from form
+      form.setValue("banner", "");
+    } catch (error) {
+      console.error("Error deleting banner:", error);
+      toast.error("خطا در حذف بنر");
+      // Still remove from form even if server deletion fails
+      form.setValue("banner", "");
+    }
   };
 
   return (
