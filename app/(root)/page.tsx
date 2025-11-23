@@ -8,43 +8,47 @@ import {
 import ViewAllProductsButton from "@/components/view-all-products-button";
 import IconBoxes from "@/components/icon-boxes";
 import DealCountdown from "@/components/deal-countdown";
-// import Hero from "@/components/hero";
+import PromotionalHero from "@/components/promotional-hero";
 import WhyUs from "@/components/WhyUs";
 import { MainDialog } from "@/components/main-dialog";
-import Hero2 from "@/components/hero2";
 import CategoriesList from "@/components/categories-list";
 import TwoColumns from "@/components/TwoColumns";
 import FAQ from "@/components/faq";
+import SpecialProductSections from "@/components/special-product-sections";
+import GuaranteeSection from "@/components/guarantee-section";
 
 const HomePage = async () => {
   const latestProducts: any = await getLatestProducts();
   // const featuredProducts = await getFeaturedProducts();
   return (
-    <div className="space-y-8">
-      {/* <div dir="ltr">
-        {featuredProducts.length > 0 && (
-          <ProductCarousel data={featuredProducts} />
-        )}
-      </div> */}
+    <div className="space-y-0">
+      {/* Hero Section با بنرهای تبلیغاتی */}
+      <PromotionalHero />
 
-      {/* <Hero /> */}
-      <Hero2 />
-      <div className="wrapper">
+      {/* بخش محصولات ویژه */}
+      <SpecialProductSections />
+
+      {/* دسته‌بندی‌ها */}
+      <div className="wrapper py-8">
         <CategoriesList />
       </div>
 
-      <div className="wrapper">
-        <ProductList title="جدیدترین محصولات" data={latestProducts} />
+      {/* جدیدترین محصولات */}
+      <div className="wrapper py-8">
+        <ProductList title="جدیدترین ها (مشاهده همه)" data={latestProducts} />
         <ViewAllProductsButton />
       </div>
-      {/* <WhyUs /> */}
-      <div className="wrapper">
-        {/* <DealCountdown targetDate={new Date("2026-12-20T00:00:00")} /> */}
-        {/* <IconBoxes /> */}
+
+      {/* بخش تضمین‌ها */}
+      <GuaranteeSection />
+
+      {/* بخش دو ستونی */}
+      <div className="wrapper py-8">
         <TwoColumns />
       </div>
+
+      {/* FAQ */}
       <FAQ />
-      {/* <MainDialog /> */}
     </div>
   );
 };

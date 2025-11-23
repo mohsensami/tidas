@@ -98,188 +98,158 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="border-t border-t-gold bg-dark-blue text-gold ">
-      {/* ویژگی‌ها */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
-          {/* ... همان 4 باکس ویژگی ... */}
-          <div className="flex flex-col items-center gap-2">
-            <div className="rounded-full p-3 ring-1 ring-border bg-white text-blue-700">
-              <Truck className="w-6 h-6" />
+    <footer dir="rtl" className="bg-gray-900 text-white">
+      {/* بخش تماس */}
+      <div className="bg-gray-800 py-6">
+        <div className="wrapper">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-center md:text-right">
+              <h3 className="font-bold text-lg mb-2">با ما تماس بگیرید</h3>
+              <p className="text-yellow-400 text-xl font-bold">021-xxxxxxxx</p>
+              <p className="text-sm text-gray-400 mt-1">
+                تماس مستقیم با مدیریت
+              </p>
             </div>
-            <div className="text-sm  text-white">ارسال به شهر تهران</div>
-            <div className="text-xs text-text-muted">
-              در کمتر از ۳ ساعت از ما تحویل بگیرید!
+            <div className="text-center md:text-right">
+              <p className="text-gray-300">tidasgoldgallery@gmail.com</p>
             </div>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="rounded-full p-3 ring-1 ring-border bg-white text-blue-700">
-              <AlarmClock className="w-6 h-6" />
+            <div className="text-center md:text-right">
+              <p className="text-gray-300">مشاوره فروش</p>
+              <p className="text-gray-300">در وب اپلیکیشن تماس</p>
             </div>
-            <div className="text-sm  text-white">زمان و نحوه دریافت </div>
-            <div className="text-xs text-text-muted">
-              ارسال از ۹ تا ۱۹ در شهر تهران
-            </div>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="rounded-full p-3 ring-1 ring-border bg-white text-blue-700">
-              <Headset className="w-6 h-6" />
-            </div>
-            <div className="text-sm  text-white">پشتیبانی همیشگی از </div>
-            <div className="text-xs text-text-muted">
-              مشاوره فروش در واتس آپ
-            </div>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="rounded-full p-3 ring-1 ring-border bg-white text-blue-700">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
-            <div className="text-sm  text-white">ضمانت تحویل سالم </div>
-            <div className="text-xs text-text-muted">
-              بازگشت وجه در صورت آسیب
+            <div className="text-center md:text-right">
+              <p className="text-gray-300 font-semibold">موقعیت</p>
+              <p className="text-gray-300 text-sm">خیابان پیروزی</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* لینک‌ها + خبرنامه */}
-      <div className="bg-surface border-t border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* خبرنامه */}
-            <div>
-              {/* ... همانی که داشتی ... */}
-              <div className="rounded-2xl bg-muted p-5 shadow-sm">
-                <h3 className="text-black  mb-3">همیشه اولین نفر باش!</h3>
-                <p className="text-sm text-black mb-4">
-                  برای اطلاع از آخرین تخفیف‌ها شماره تماست رو وارد کن.
-                </p>
-                <form onSubmit={onSubmit} className="space-y-3">
-                  <Input
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    inputMode="tel"
-                    placeholder="شماره تماس خود را وارد کنید"
-                    className="bg-white border border-border focus:ring-primary"
-                  />
-                  <Button type="submit" className="w-full">
-                    ارسال
-                  </Button>
-                </form>
-              </div>
-            </div>
-
-            {/* ستون‌های لینک + مجله */}
-            <div className="md:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-6">
-              {/* محصولات جدید (به‌جای دسته‌بندی ثابت) */}
-              <div>
-                <h4 className="mb-3 text-white font-extrabold text-primary">
-                  محصولات جدید
-                </h4>
-                <ul className="space-y-2 text-sm">
-                  {pLoading && (
-                    <li className="text-text-muted">در حال بارگذاری…</li>
-                  )}
-                  {pErr && !pLoading && (
-                    <li className="text-red-600">خطا: {pErr}</li>
-                  )}
-                  {!pLoading &&
-                    !pErr &&
-                    latestProducts.map((p) => (
-                      <li key={p.id}>
-                        <Link
-                          className="hover:text-primary"
-                          href={`/products/${p.slug}`}
-                        >
-                          {p.name}
-                        </Link>
-                      </li>
-                    ))}
-                  {!pLoading && !pErr && latestProducts.length === 0 && (
-                    <li className="text-text-muted">محصولی یافت نشد.</li>
-                  )}
-                </ul>
-              </div>
-
-              {/* لینک‌های خدمات مشتریان (بدون تغییر) */}
-              <div>
-                <h4 className="mb-3 text-white font-extrabold text-primary">
-                  خدمات مشتریان
-                </h4>
-                <ul className="space-y-2 text-sm">
-                  <li>
-                    <Link className="hover:text-primary" href="/">
-                      نحوه ثبت سفارش
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-primary" href="/">
-                      شیوه‌های پرداخت
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-primary" href="/">
-                      رویه ارسال سفارش
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-primary" href="/">
-                      نحوه بسته‌بندی
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-primary" href="/">
-                      نمونه سفارشات ارسال شده
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* مجله تیداس گلد (همانی که داشتی) */}
-              <div>
-                <h4 className="mb-3 text-white font-extrabold text-primary">
-                  مجله تیداس گلد
-                </h4>
-                <ul className="space-y-2">
-                  {loading && (
-                    <li className="text-sm text-text-muted">
-                      در حال بارگذاری…
-                    </li>
-                  )}
-                  {err && !loading && (
-                    <li className="text-sm text-red-600">خطا: {err}</li>
-                  )}
-                  {!loading &&
-                    !err &&
-                    articles.map((a) => (
-                      <li key={a.id} className="text-sm">
-                        <Link
-                          className="hover:text-blue-500"
-                          href={`/blog/${a.slug}`}
-                        >
-                          {a.title}
-                        </Link>
-                      </li>
-                    ))}
-                  {!loading && !err && articles.length === 0 && (
-                    <li className="text-sm text-text-muted">
-                      مقاله‌ای یافت نشد.
-                    </li>
-                  )}
-                </ul>
-              </div>
-            </div>
+      {/* لینک‌های دسته‌بندی و اطلاعات */}
+      <div className="wrapper py-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* دسته‌بندی‌ها */}
+          <div>
+            <h4 className="font-bold text-lg mb-4">دسته‌بندی‌ها</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>
+                <Link
+                  href="/search?category=سرویس"
+                  className="hover:text-yellow-400"
+                >
+                  سرویس
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/search?category=نیم ست"
+                  className="hover:text-yellow-400"
+                >
+                  نیم ست
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/search?category=گردنبند"
+                  className="hover:text-yellow-400"
+                >
+                  گردنبند
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/search?category=زنجیر"
+                  className="hover:text-yellow-400"
+                >
+                  زنجیر
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/search?category=دستبند"
+                  className="hover:text-yellow-400"
+                >
+                  دستبند
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/search?category=انگشتر"
+                  className="hover:text-yellow-400"
+                >
+                  انگشتر
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/search?category=گوشواره"
+                  className="hover:text-yellow-400"
+                >
+                  گوشواره
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          <div className="mt-10 border-t border-border pt-6 text-center text-xs text-text-muted mb-5 md:mb-0 pb-5">
-            <span>
-              تمامی حقوق این وب‌سایت متعلق به{" "}
-              <a href="/" className="text-gold font-bold">
-                تیداس گلد
-              </a>{" "}
-              است.
-            </span>
+          {/* اطلاعات فروشگاه */}
+          <div>
+            <h4 className="font-bold text-lg mb-4">اطلاعات فروشگاه</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>
+                <Link href="/faq" className="hover:text-yellow-400">
+                  قوانین و مقررات
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact-us" className="hover:text-yellow-400">
+                  تماس با ما
+                </Link>
+              </li>
+              <li>
+                <Link href="/about-us" className="hover:text-yellow-400">
+                  همکاری با ما
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-yellow-400">
+                  بلاگ آموزشی
+                </Link>
+              </li>
+            </ul>
           </div>
+
+          {/* اطلاعات تماس */}
+          <div>
+            <h4 className="font-bold text-lg mb-4">اطلاعات تماس</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>شعبه جنوب: .....................</li>
+              <li>شعبه غرب: .............</li>
+              <li>
+                <Link href="#" className="hover:text-yellow-400">
+                  اینستاگرام ما
+                </Link>
+              </li>
+              <li>021-xxxxxxxx</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* نمادهای اعتماد */}
+        <div className="mt-8 pt-8 border-t border-gray-700">
+          <h4 className="font-bold text-lg mb-4 text-center">نمادهای اعتماد</h4>
+          <p className="text-center text-sm text-gray-400">
+            به زودی: خرید اقساطی با اسنپ پی
+          </p>
+        </div>
+
+        {/* کپی‌رایت */}
+        <div className="mt-8 pt-6 border-t border-gray-700 text-center">
+          <p className="text-sm text-gray-400">
+            تمامی حقوق این سایت متعلق به طلا فروشی تیداس گلد گالری می باشد.
+          </p>
+          <p className="text-sm text-gray-400 mt-2">
+            تجربه یک خرید مطمئن با تیداس گلد!
+          </p>
         </div>
       </div>
     </footer>
