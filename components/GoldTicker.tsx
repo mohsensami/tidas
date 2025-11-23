@@ -92,13 +92,13 @@ export default function GoldTicker() {
                 >
                   021-xxxxxxx
                 </Link>
-                <Link
+                {/* <Link
                   href="/sign-in"
                   className="text-sm hover:underline"
                   onClick={(e) => e.stopPropagation()}
                 >
                   ورود/ثبت نام
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

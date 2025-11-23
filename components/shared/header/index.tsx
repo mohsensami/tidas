@@ -39,12 +39,12 @@ const Header = () => {
         {/* Right Side - Cart, User, Menu */}
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-2">
-            <Link
+            {/* <Link
               href="/contact-us"
               className="text-sm text-gray-700 hover:text-yellow-600"
             >
               021-xxxxxx
-            </Link>
+            </Link> */}
           </div>
           <Menu />
         </div>
