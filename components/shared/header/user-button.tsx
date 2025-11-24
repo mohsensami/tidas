@@ -15,7 +15,7 @@ const UserButton = async () => {
   if (!session) {
     return (
       <Link href="/api/auth/signin">
-        <Button className="bg-gold text-dark-blue">ورود</Button>
+        <Button className="text-gold">ورود</Button>
       </Link>
     );
   }

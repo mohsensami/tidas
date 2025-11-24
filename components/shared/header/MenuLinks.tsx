@@ -218,12 +218,17 @@ export function MenuLinks() {
           </NavigationMenuLink>
         </NavigationMenuItem>
 
-        {/* محصولات */}
         <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link href="/search">محصولات </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+
+        {/* محصولات */}
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger>محصولات</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="grid gap-4 p-6 md:w-[700px] lg:w-[900px] lg:grid-cols-[250px_1fr]">
-              {/* لیست دسته‌بندی‌ها */}
               <div className="space-y-1 border-l lg:pr-4">
                 {categories.map((cat) => (
                   <Link
@@ -244,7 +249,6 @@ export function MenuLinks() {
                 ))}
               </div>
 
-              {/* نمایش محصولات */}
               <div className="lg:pl-4">
                 {hoveredCategory ? (
                   <div>
@@ -300,7 +304,7 @@ export function MenuLinks() {
               </div>
             </div>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
 
         {/* صفحه نخست */}
         <NavigationMenuItem>

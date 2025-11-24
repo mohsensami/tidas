@@ -43,12 +43,12 @@ const HomePage = async () => {
       <GuaranteeSection />
 
       {/* بخش دو ستونی */}
-      <div className="wrapper py-8">
+      {/* <div className="wrapper py-8">
         <TwoColumns />
-      </div>
+      </div> */}
 
       {/* FAQ */}
-      <FAQ />
+      {/* <FAQ /> */}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
@@ -7,13 +8,13 @@ const ViewAllProductsButton = () => {
   const router = useRouter();
 
   return (
-    <div className="flex justify-center items-center mt-8">
-      <Button
-        onClick={() => router.push("/search")}
-        className="px-8 py-4 text-sm font-semibold"
+    <div className="flex justify-center items-center ">
+      <Link
+        href="/search"
+        className="px-4 py-2 text-sm font-semibold bg-dark-blue text-gold"
       >
         مشاهده همه محصولات
-      </Button>
+      </Link>
     </div>
   );
 };
