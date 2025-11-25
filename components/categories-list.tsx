@@ -12,7 +12,7 @@ const CategoriesList = async () => {
   };
 
   return (
-    <div className="">
+    <div className="py-4">
       <div className="space-y-4">
         <h2 className="text-xl font-bold text-center">دسته‌بندی‌های محصولات</h2>
         <div className="flex flex-wrap items-center justify-center gap-4">

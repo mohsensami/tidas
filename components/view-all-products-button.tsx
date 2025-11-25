@@ -11,7 +11,7 @@ const ViewAllProductsButton = () => {
     <div className="flex justify-center items-center ">
       <Link
         href="/search"
-        className="px-4 py-2 text-sm font-semibold bg-dark-blue text-gold"
+        className="px-4 py-2 text-sm font-semibold bg-gold !text-dark-blue"
       >
         مشاهده همه محصولات
       </Link>

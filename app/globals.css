@@ -158,9 +158,6 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
 
 /* Uploadthing button text override*/
@@ -174,6 +171,7 @@ html.dark .upload-field .text-white {
 
 @theme {
   --color-dark-blue: #192440;
+  --color-light-blue: #23324c;
   --color-gold: gold;
 }
 
@@ -200,4 +198,32 @@ html.dark .upload-field .text-white {
   -webkit-background-clip: text;
   color: transparent;
   animation: gold-shine 2s linear infinite;
+}
+
+body {
+  @apply bg-dark-blue text-gold;
+}
+a {
+  @apply text-gold;
+}
+a:hover {
+  @apply text-gold;
+}
+a:active {
+  @apply text-gold;
+}
+a:visited {
+  @apply text-gold;
+}
+span {
+  @apply text-gold;
+}
+span:hover {
+  @apply text-gold;
+}
+span:active {
+  @apply text-gold;
+}
+span:visited {
+  @apply text-gold;
 }

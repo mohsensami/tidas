@@ -48,7 +48,7 @@ const ProductSummary = ({ product, cart, isFavorite }: ProductSummaryProps) => {
       <div className="space-y-4">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 space-y-3">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2 text-sm !text-dark-blue">
               <span>{product.brand}</span>
               <span>•</span>
               <span>{product.category}</span>
@@ -56,7 +56,7 @@ const ProductSummary = ({ product, cart, isFavorite }: ProductSummaryProps) => {
             <h1 className="text-3xl font-bold leading-tight">{product.name}</h1>
             <div className="flex items-center gap-4">
               <Rating value={Number(product.rating)} />
-              <span className="text-sm text-muted-foreground">
+              <span className="text-sm !text-dark-blue">
                 ({product.numReviews} دیدگاه)
               </span>
             </div>
@@ -78,12 +78,12 @@ const ProductSummary = ({ product, cart, isFavorite }: ProductSummaryProps) => {
         </div>
 
         {/* Price */}
-        <div className="flex items-center gap-3">
+        {/* <div className="flex items-center gap-3">
           <ProductPrice
             value={Number(product.price)}
             className="text-3xl font-bold text-primary"
           />
-        </div>
+        </div> */}
       </div>
 
       <Separator />
@@ -94,7 +94,7 @@ const ProductSummary = ({ product, cart, isFavorite }: ProductSummaryProps) => {
           {/* Stock Status */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Package className="w-5 h-5 text-muted-foreground" />
+              <Package className="w-5 h-5 !text-dark-blue" />
               <span className="text-sm font-medium">وضعیت موجودی:</span>
             </div>
             {product.stock > 0 ? (
@@ -136,15 +136,15 @@ const ProductSummary = ({ product, cart, isFavorite }: ProductSummaryProps) => {
           {/* Product Info */}
           <div className="space-y-3 pt-4 border-t">
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">برند:</span>
+              <span className="text-dark-blue">برند:</span>
               <span className="font-medium">{product.brand}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">دسته‌بندی:</span>
+              <span className="text-dark-blue">دسته‌بندی:</span>
               <span className="font-medium">{product.category}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">امتیاز:</span>
+              <span className="text-dark-blue">امتیاز:</span>
               <div className="flex items-center gap-2">
                 <Rating value={Number(product.rating)} />
                 <span className="font-medium">

@@ -41,7 +41,7 @@ const ProductList = ({
 
   return (
     <div className="relative w-full px-8 sm:px-12">
-      {title && <h2 className="h4-bold mb-4">{title}</h2>}
+      {title && <h2 className="h4-bold text-gold mb-4">{title}</h2>}
       <div className="relative">
         <Swiper
           modules={[Navigation, Pagination]}

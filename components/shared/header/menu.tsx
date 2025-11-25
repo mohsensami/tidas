@@ -49,7 +49,7 @@ const Menu = () => {
                   <li className="bg-gray-200 w-64 text-center px-4 py-4 text-sm ">
                     <Link href="/search"> محصولات</Link>
                   </li>
-                  <li className="bg-gray-200 w-64 text-center px-4 py-4 text-sm ">
+                  {/* <li className="bg-gray-200 w-64 text-center px-4 py-4 text-sm ">
                     <Link href="/about-us"> درباره ما</Link>
                   </li>
                   <li className="bg-gray-200 w-64 text-center px-4 py-4 text-sm ">
@@ -57,7 +57,7 @@ const Menu = () => {
                   </li>
                   <li className="bg-gray-200 w-64 text-center px-4 py-4 text-sm ">
                     <Link href="/faq"> سوالات متداول</Link>
-                  </li>
+                  </li> */}
                 </nav>
               </div>
             </SheetContent>

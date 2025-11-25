@@ -11,7 +11,7 @@ const specialSections = [
     icon: Gift,
     link: "/search?category=هدیه",
     image: "https://talaghesti.com/assets/images/home-5/hero/01.png",
-    bgColor: "bg-gradient-to-br from-pink-50 to-rose-100",
+    bgColor: "bg-gradient-to-br from-blue-50 to-blue-100",
   },
   {
     id: "baby",
@@ -20,7 +20,7 @@ const specialSections = [
     icon: Baby,
     link: "/search?category=کودک",
     image: "https://talaghesti.com/assets/images/home-5/category/02.png",
-    bgColor: "bg-gradient-to-br from-blue-50 to-cyan-100",
+    bgColor: "bg-gradient-to-br from-blue-50 to-blue-100",
   },
   {
     id: "teen",
@@ -29,13 +29,13 @@ const specialSections = [
     icon: Sparkles,
     link: "/search?category=نوجوان",
     image: "https://talaghesti.com/assets/images/home-5/category/04.png",
-    bgColor: "bg-gradient-to-br from-purple-50 to-violet-100",
+    bgColor: "bg-gradient-to-br from-blue-50 to-blue-100",
   },
 ];
 
 export default function SpecialProductSections() {
   return (
-    <section dir="rtl" className="py-12 bg-gray-50">
+    <section dir="rtl" className="py-12 bg-light-blue text-white">
       <div className="wrapper">
         <div className="grid md:grid-cols-3 gap-6">
           {specialSections.map((section) => {
@@ -44,7 +44,7 @@ export default function SpecialProductSections() {
               <Link
                 key={section.id}
                 href={section.link}
-                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="group text-dark-blue bg-dark-blue relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 <div
                   className={`${section.bgColor} p-8 h-full flex flex-col items-center text-center space-y-4`}

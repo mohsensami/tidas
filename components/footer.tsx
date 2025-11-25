@@ -98,9 +98,9 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer dir="rtl" className="bg-gray-900 text-white">
+    <footer dir="rtl" className="bg-dark-blue text-white">
       {/* بخش تماس */}
-      <div className="bg-gray-800 py-6">
+      <div className="bg-dark-blue text-gold py-6">
         <div className="wrapper">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-center md:text-right">
@@ -192,7 +192,7 @@ export default function Footer() {
           </div>
 
           {/* اطلاعات فروشگاه */}
-          <div>
+          {/* <div>
             <h4 className="font-bold text-lg mb-4">اطلاعات فروشگاه</h4>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
@@ -216,7 +216,7 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* اطلاعات تماس */}
           <div>

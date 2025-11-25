@@ -29,12 +29,12 @@ const HomePage = async () => {
       <SpecialProductSections />
 
       {/* دسته‌بندی‌ها */}
-      <div className="wrapper py-8">
+      <div className="wrapper text-gold py-8">
         <CategoriesList />
       </div>
 
       {/* جدیدترین محصولات */}
-      <div className="wrapper py-8">
+      <div className="wrapper  py-8">
         <ProductList title="جدیدترین ها (مشاهده همه)" data={latestProducts} />
         <ViewAllProductsButton />
       </div>
