@@ -232,6 +232,11 @@ export default function Footer() {
               <li>021-xxxxxxxx</li>
             </ul>
           </div>
+
+          <div className="flex items-center justify-center gap-4">
+            <img src="https://tala.ct.ws/wp-content/uploads/2020/01/samandehi.png" />
+            <img src="https://tala.ct.ws/wp-content/uploads/2020/01/enamad.png" />
+          </div>
         </div>
 
         {/* نمادهای اعتماد */}
